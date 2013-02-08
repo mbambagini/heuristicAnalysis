@@ -1,7 +1,7 @@
 /*! \file sim.cpp
  *
- * This file contains a simple implementation of a Fixed-Priority simulator 
- * which accounts the time spent in active, idle, switching and sleep states.
+ * This file contains a simple implementation of an EDF simulator which accounts
+ * the time spent in active, idle, switching and sleep states.
  * The break-even time is taken into account.
  * During idle time, the energy saving algorithm switch the processor off if
  * and only if the time until next task arrival is longer than the BET.
