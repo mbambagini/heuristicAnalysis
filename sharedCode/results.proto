@@ -1,0 +1,33 @@
+package GlobalResults;
+
+message Consumption {
+	//core id
+	required int32 core = 1;
+	//average power consumption
+	required double meanP = 2;
+	//utilization
+	required double u = 3;
+	//number of assigned tasks
+	required int32 nOfTasks = 4;
+};
+
+message AlgorithmInvocation {
+	//Task Sorting Algorithm used
+	required int32 TSA = 1;
+	//Core Sorting Algorithm used
+	required int32 CSA = 2;
+	//Number of cores
+	required int32 nOfCores = 3;
+	//Overall utilization on a core with unitary capabilities
+	required double u = 4;
+	//consumption for each core
+	repeated Consumption cons = 5;
+	//the partitioning is feasible?
+	required bool feasible = 6;
+};
+
+message GlobalResult {
+	//results of all the algorithm executions (partitioning and simulation)
+	repeated AlgorithmInvocation results = 1;
+};
+

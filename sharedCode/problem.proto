@@ -1,0 +1,61 @@
+package Problem;
+
+////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////// SOFTWARE SECTION ///////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+
+message Task {
+	//task ID
+	required int32 id = 1;
+	//sum of the worst-case execution times
+	required int32 wcet = 2;
+	//required computation time for each computational resource
+	repeated int32 wcets = 3;
+	//task period
+	required int32 period = 4;
+	//task deadline
+	required int32 deadline = 5;
+};
+
+message Software {
+	//task set
+	repeated Task tasks = 1;
+	//utilization (independent from the hardware)
+	required double U = 2;
+	//number of computational resources
+	required int32 units = 3;
+};
+
+
+
+////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////// HARDWARE SECTION ///////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+
+message ProcessorType {
+	//type id
+	required int32 id = 1;
+	//required power in the idle state
+	required double Pidle = 2;
+	//required power in the sleep state. for the sake of simplicity, only a
+	//single low-power state is considered
+	required double Psleep = 3;
+	//required power in the active state
+	required double Pactive = 4;
+	//required power during the state transitions
+	required double Pswitching = 5;
+	//break-even time
+	required double bet = 6;
+	//for each resource, the relative processor speed
+	repeated int32 speed = 7;
+};
+
+message Hardware {
+	//set of processor types
+	repeated ProcessorType types = 1;
+	//deployed processors
+	repeated int32 processors = 2;
+	//number of computational resources
+	required int32 nOfResources = 3;
+};
+

@@ -1,0 +1,53 @@
+package Simulations;
+
+
+message Task
+{
+	//task id
+	required int32 id = 1;
+	//task period
+	required int32 period = 2;
+	//task deadline
+	required int32 deadline = 3;
+	//worst-case execution time
+	required int32 wcet = 4;
+};
+
+
+message Result
+{
+	//time spent in active mode
+	required float activeTime = 1;
+	//time spent in sleep mode
+	required float sleepTime = 2;
+	//time spent switching mode
+	required float switchingTime = 3;
+	//time spent in idle
+	required float idleTime = 4;
+	//number of preemptions
+	required int32 nOfPreemptions = 5;
+	//number of idle times
+	required int32 nOfInvocations = 6;
+	//number of switchings into sleep mode
+	required int32 nOfSleeps = 7;
+	//true if no task has been allcoated on it (always off)
+	required bool off = 8;
+}
+
+
+message Simulation
+{
+	//task set
+	repeated Task tasks = 1;
+	//utilization on the core in question
+	required float utilization = 2;
+	//core in question
+	required int32 core = 3;
+	//core's break-even time
+	required int32 bet = 4;
+	//simulation results
+	optional Result res = 5;
+	//the task allocation is feasible?
+	required bool feasible = 6;
+};
+
