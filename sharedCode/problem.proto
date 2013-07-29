@@ -6,15 +6,17 @@ package Problem;
 
 message Task {
 	required int32 id = 1;				//task ID
-	repeated int32 wcets = 2;			//WCET for each computational resource
-	required int32 period = 3;			//period
-	required int32 deadline = 4;		//deadline
+	required int32 wcet = 2;			//overall WCET
+	repeated int32 wcets = 3;			//WCET for each computational resource
+	required int32 period = 4;			//period
+	required int32 deadline = 5;		//deadline
 };
 
 message Software {
 	repeated Task tasks = 1;			//task set
 	required double U = 2;				//utilization (hardware independent)
-	required int32 nOfResources = 3;	//number of resources
+	required double real_U = 3;			//real utilization
+	required int32 nOfResources = 4;	//number of resources
 };
 
 
@@ -23,21 +25,24 @@ message Software {
 /////////////////////////////// HARDWARE SECTION ///////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-message PowerConsumption {
-	required double idle = 1;
-	required double off = 2;
+message Coefficients {
+	required double k0 = 1;
+	required double k1 = 2;
+	required double k2 = 3;
+	required double k3 = 4;
 };
 
-message Computation {
-	repeated int32 computation = 1;		//computational power for each resource
-};
+message ConsAtSpeed {
+	required double speed = 1;			//speed in question
+	required Coefficients coeffs = 2;	//coefficient
+}
 
 message Hardware {
-	required int32 nOfCPU = 1;			//number of CPU
-	required PowerConsumption off;		//Power consumption when all CPU down or
-										//idle
-	repeated PowerConsumption cons = 3;	//Power consumption when the first i
-										//CPUs are up
-	required Computation comp = 4;		//number of resources
+	required int32 nOfClusters = 1;		//number of Clusters
+	required int32 CpC = 2;				//number of CPU per Cluster
+	repeated ConsAtSpeed cons = 3;		//power consumptions at different speeds
+	required int32 nOfResources = 4;	//number of resources 
+	repeated int32 resources = 5;		//computational power for each resource
+										//of each CPU at the maximum speed
 };
 
