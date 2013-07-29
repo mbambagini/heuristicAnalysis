@@ -48,7 +48,7 @@ int main (int argc, char* argv[])
 
 	//generation process
 	Problem::Software sw;
-	sw.set_units(FLAGS_numRes);
+	sw.set_nofresources(FLAGS_numRes);
 
 	double seed = (double)time(0);
 	seed *= FLAGS_seed;
@@ -64,6 +64,7 @@ int main (int argc, char* argv[])
 	} while(real_u>FLAGS_u || real_u<(FLAGS_u*0.9));
 
 	sw.set_u(FLAGS_u);
+	sw.set_real_u(real_u);
 	for (int j=0; j<FLAGS_n; j++) {
 		Problem::Task *t = sw.add_tasks();
 		t->set_id(j);

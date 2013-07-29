@@ -5,25 +5,16 @@ package Problem;
 ////////////////////////////////////////////////////////////////////////////////
 
 message Task {
-	//task ID
-	required int32 id = 1;
-	//sum of the worst-case execution times
-	required int32 wcet = 2;
-	//required computation time for each computational resource
-	repeated int32 wcets = 3;
-	//task period
-	required int32 period = 4;
-	//task deadline
-	required int32 deadline = 5;
+	required int32 id = 1;				//task ID
+	repeated int32 wcets = 2;			//WCET for each computational resource
+	required int32 period = 3;			//period
+	required int32 deadline = 4;		//deadline
 };
 
 message Software {
-	//task set
-	repeated Task tasks = 1;
-	//utilization (independent from the hardware)
-	required double U = 2;
-	//number of computational resources
-	required int32 units = 3;
+	repeated Task tasks = 1;			//task set
+	required double U = 2;				//utilization (hardware independent)
+	required int32 nOfResources = 3;	//number of resources
 };
 
 
@@ -32,30 +23,21 @@ message Software {
 /////////////////////////////// HARDWARE SECTION ///////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-message ProcessorType {
-	//type id
-	required int32 id = 1;
-	//required power in the idle state
-	required double Pidle = 2;
-	//required power in the sleep state. for the sake of simplicity, only a
-	//single low-power state is considered
-	required double Psleep = 3;
-	//required power in the active state
-	required double Pactive = 4;
-	//required power during the state transitions
-	required double Pswitching = 5;
-	//break-even time
-	required double bet = 6;
-	//for each resource, the relative processor speed
-	repeated int32 speed = 7;
+message PowerConsumption {
+	required double idle = 1;
+	required double off = 2;
+};
+
+message Computation {
+	repeated int32 computation = 1;		//computational power for each resource
 };
 
 message Hardware {
-	//set of processor types
-	repeated ProcessorType types = 1;
-	//deployed processors
-	repeated int32 processors = 2;
-	//number of computational resources
-	required int32 nOfResources = 3;
+	required int32 nOfCPU = 1;			//number of CPU
+	required PowerConsumption off;		//Power consumption when all CPU down or
+										//idle
+	repeated PowerConsumption cons = 3;	//Power consumption when the first i
+										//CPUs are up
+	required Computation comp = 4;		//number of resources
 };
 

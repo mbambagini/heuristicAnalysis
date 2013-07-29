@@ -22,13 +22,7 @@ using namespace Problem;
 DEFINE_string(binaryFile, "", "Binary output file");
 
 
-/*!
- * Let users add as many processors as they want.
- * First of all, users insert the available processor types and then,
- * the deployed cores are specified
- */
-int add_processors(Hardware& hw, int nOfResources);
-
+int add_speed (Hardware& hw);
 
 void fatal_error (string msg);
 
@@ -51,8 +45,24 @@ int main (int argc, char* argv[])
 	cin>>nOfRes;
 	hw.set_nofresources(nOfRes);
 
-	if (add_processors(hw, nOfRes)<1)
-		fatal_error("data not valid");
+	for(int i=0; i<nOfRes; i++) {
+		int tmp;
+		cout<<"Number of commited resources of type "<<i<<" per second: ";
+		cin>>tmp;
+		hw.add_resources(tmp);
+	}
+
+	int nOfClusters;
+	cout<<"Add number of clusters: ";
+	cin>>nOfClusters;
+	hw.set_nofclusters(nOfClusters);
+
+	int CPUperCluster;
+	cout<<"Add number of CPU per cluster: ";
+	cin>>CPUperCluster;
+	hw.set_cpc(CPUperCluster);
+
+	add_speed(hw);
 
 	//output - serialization
 	fstream output(FLAGS_binaryFile.c_str(), ios::out |ios::trunc|ios::binary);
@@ -65,70 +75,43 @@ int main (int argc, char* argv[])
 }
 
 
-
-int add_processors(Hardware& hw, int nOfResources)
+int add_speed (Hardware& hw)
 {
-	cout<<"ADD PROCESSOR TYPES"<<endl;
-
-	int id = 0;
 	do {
-		ProcessorType *type = hw.add_types();
-		type->set_id(id++);
+		ConsAtSpeed *cons = hw.add_cons();
+		Coefficients *coeffs = cons->mutable_coeffs();
 
-		double val;
-		cout<<"Add p_active : ";
-		cin>>val;
-		type->set_pactive(val);
+		double speed;
+		cout<<"Add speed (GHz): ";
+		cin>>speed;
+		cons->set_speed(speed);
 
-		cout<<"Add p_idle : ";
-		cin>>val;
-		type->set_pidle(val);
+		double coeff;
+		cout<<"Add k0: ";
+		cin>>coeff;
+		coeffs->set_k0(coeff);
 
-		cout<<"Add p_sleep : ";
-		cin>>val;
-		type->set_psleep(val);
+		cout<<"Add k1: ";
+		cin>>coeff;
+		coeffs->set_k1(coeff);
 
-		cout<<"Add p_switching : ";
-		cin>>val;
-		type->set_pswitching(val);
+		cout<<"Add k2: ";
+		cin>>coeff;
+		coeffs->set_k2(coeff);
 
-		cout<<"Add BET : ";
-		cin>>val;
-		type->set_bet(val);
-
-		cout<<"Add instruction/second for each resource"<<endl;
-		for (int i=0; i<nOfResources; i++) {
-			cout<<"Resource "<<i<<": ";
-			cin>>val;
-			type->add_speed(val);
-		}
+		cout<<"Add k3: ";
+		cin>>coeff;
+		coeffs->set_k3(coeff);
 
 		char c;
-		cout<<"Add a new processor type (Y/n)? ";
+		cout<<"Add a new speed (Y/n)? ";
 		cin>>c;
 		if (c=='N' || c=='n')
 			break;
 	} while(true);
 
-	cout<<"ADD PROCESSORS"<<endl;
-	do {
-		int i;
-		cout<<"Insert processor type : ";
-		cin>>i;
-		if (i>=id)
-			continue;
-		hw.add_processors(i);
-
-		char c;
-		cout<<"Add a new processor (Y/n)? ";
-		cin>>c;
-		if (c=='N' || c=='n')
-			break;
-	} while (true);
-
 	return 1;
 }
-
 
 
 void fatal_error (string msg)
