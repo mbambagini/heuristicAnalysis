@@ -54,14 +54,14 @@ int main (int argc, char* argv[])
 	cout<<")"<<endl;
 	cout<<setw(20)<<"#clusters:"<<setw(10)<<hw.nofclusters()<<endl;
 	cout<<setw(20)<<"CPU per Cluster:"<<setw(10)<<hw.cpc()<<endl<<endl;
-	cout<<setw(10)<<"Speed"<<setw(10)<<"K0"<<setw(10)<<"K1*c";
-	cout<<setw(10)<<"K2*c^2"<<setw(10)<<"K3*c^3"<<endl;
+	cout<<setw(10)<<"Speed"<<setw(10)<<"K3*c^3"<<setw(10)<<"K2*c^2";
+	cout<<setw(10)<<"K1*c"<<setw(10)<<"K0"<<endl;
 	for (int i=0; i<hw.cons_size(); i++) {
 		ConsAtSpeed cons = hw.cons(i);
 		cout.setf(ios::fixed);
 		cout<<setw(10)<<setprecision(3)<<cons.speed();
-		cout<<setw(10)<<cons.coeffs().k0()<<setw(10)<<cons.coeffs().k1();
-		cout<<setw(10)<<cons.coeffs().k2()<<setw(10)<<cons.coeffs().k3()<<endl;
+		cout<<setw(10)<<cons.coeffs().k3()<<setw(10)<<cons.coeffs().k2();
+		cout<<setw(10)<<cons.coeffs().k1()<<setw(10)<<cons.coeffs().k0()<<endl;
 	}
 
 	google::protobuf::ShutdownProtobufLibrary();

@@ -23,9 +23,12 @@ const ::google::protobuf::internal::GeneratedMessageReflection*
 const ::google::protobuf::Descriptor* Software_descriptor_ = NULL;
 const ::google::protobuf::internal::GeneratedMessageReflection*
   Software_reflection_ = NULL;
-const ::google::protobuf::Descriptor* ProcessorType_descriptor_ = NULL;
+const ::google::protobuf::Descriptor* Coefficients_descriptor_ = NULL;
 const ::google::protobuf::internal::GeneratedMessageReflection*
-  ProcessorType_reflection_ = NULL;
+  Coefficients_reflection_ = NULL;
+const ::google::protobuf::Descriptor* ConsAtSpeed_descriptor_ = NULL;
+const ::google::protobuf::internal::GeneratedMessageReflection*
+  ConsAtSpeed_reflection_ = NULL;
 const ::google::protobuf::Descriptor* Hardware_descriptor_ = NULL;
 const ::google::protobuf::internal::GeneratedMessageReflection*
   Hardware_reflection_ = NULL;
@@ -59,10 +62,11 @@ void protobuf_AssignDesc_problem_2eproto() {
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(Task));
   Software_descriptor_ = file->message_type(1);
-  static const int Software_offsets_[3] = {
+  static const int Software_offsets_[4] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Software, tasks_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Software, u_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Software, units_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Software, real_u_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Software, nofresources_),
   };
   Software_reflection_ =
     new ::google::protobuf::internal::GeneratedMessageReflection(
@@ -75,32 +79,47 @@ void protobuf_AssignDesc_problem_2eproto() {
       ::google::protobuf::DescriptorPool::generated_pool(),
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(Software));
-  ProcessorType_descriptor_ = file->message_type(2);
-  static const int ProcessorType_offsets_[7] = {
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(ProcessorType, id_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(ProcessorType, pidle_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(ProcessorType, psleep_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(ProcessorType, pactive_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(ProcessorType, pswitching_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(ProcessorType, bet_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(ProcessorType, speed_),
+  Coefficients_descriptor_ = file->message_type(2);
+  static const int Coefficients_offsets_[4] = {
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Coefficients, k0_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Coefficients, k1_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Coefficients, k2_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Coefficients, k3_),
   };
-  ProcessorType_reflection_ =
+  Coefficients_reflection_ =
     new ::google::protobuf::internal::GeneratedMessageReflection(
-      ProcessorType_descriptor_,
-      ProcessorType::default_instance_,
-      ProcessorType_offsets_,
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(ProcessorType, _has_bits_[0]),
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(ProcessorType, _unknown_fields_),
+      Coefficients_descriptor_,
+      Coefficients::default_instance_,
+      Coefficients_offsets_,
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Coefficients, _has_bits_[0]),
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Coefficients, _unknown_fields_),
       -1,
       ::google::protobuf::DescriptorPool::generated_pool(),
       ::google::protobuf::MessageFactory::generated_factory(),
-      sizeof(ProcessorType));
-  Hardware_descriptor_ = file->message_type(3);
-  static const int Hardware_offsets_[3] = {
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Hardware, types_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Hardware, processors_),
+      sizeof(Coefficients));
+  ConsAtSpeed_descriptor_ = file->message_type(3);
+  static const int ConsAtSpeed_offsets_[2] = {
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(ConsAtSpeed, speed_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(ConsAtSpeed, coeffs_),
+  };
+  ConsAtSpeed_reflection_ =
+    new ::google::protobuf::internal::GeneratedMessageReflection(
+      ConsAtSpeed_descriptor_,
+      ConsAtSpeed::default_instance_,
+      ConsAtSpeed_offsets_,
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(ConsAtSpeed, _has_bits_[0]),
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(ConsAtSpeed, _unknown_fields_),
+      -1,
+      ::google::protobuf::DescriptorPool::generated_pool(),
+      ::google::protobuf::MessageFactory::generated_factory(),
+      sizeof(ConsAtSpeed));
+  Hardware_descriptor_ = file->message_type(4);
+  static const int Hardware_offsets_[5] = {
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Hardware, nofclusters_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Hardware, cpc_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Hardware, cons_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Hardware, nofresources_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Hardware, resources_),
   };
   Hardware_reflection_ =
     new ::google::protobuf::internal::GeneratedMessageReflection(
@@ -130,7 +149,9 @@ void protobuf_RegisterTypes(const ::std::string&) {
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
     Software_descriptor_, &Software::default_instance());
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
-    ProcessorType_descriptor_, &ProcessorType::default_instance());
+    Coefficients_descriptor_, &Coefficients::default_instance());
+  ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
+    ConsAtSpeed_descriptor_, &ConsAtSpeed::default_instance());
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
     Hardware_descriptor_, &Hardware::default_instance());
 }
@@ -142,8 +163,10 @@ void protobuf_ShutdownFile_problem_2eproto() {
   delete Task_reflection_;
   delete Software::default_instance_;
   delete Software_reflection_;
-  delete ProcessorType::default_instance_;
-  delete ProcessorType_reflection_;
+  delete Coefficients::default_instance_;
+  delete Coefficients_reflection_;
+  delete ConsAtSpeed::default_instance_;
+  delete ConsAtSpeed_reflection_;
   delete Hardware::default_instance_;
   delete Hardware_reflection_;
 }
@@ -157,23 +180,27 @@ void protobuf_AddDesc_problem_2eproto() {
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
     "\n\rproblem.proto\022\007Problem\"Q\n\004Task\022\n\n\002id\030\001"
     " \002(\005\022\014\n\004wcet\030\002 \002(\005\022\r\n\005wcets\030\003 \003(\005\022\016\n\006per"
-    "iod\030\004 \002(\005\022\020\n\010deadline\030\005 \002(\005\"B\n\010Software\022"
+    "iod\030\004 \002(\005\022\020\n\010deadline\030\005 \002(\005\"Y\n\010Software\022"
     "\034\n\005tasks\030\001 \003(\0132\r.Problem.Task\022\t\n\001U\030\002 \002(\001"
-    "\022\r\n\005units\030\003 \002(\005\"{\n\rProcessorType\022\n\n\002id\030\001"
-    " \002(\005\022\r\n\005Pidle\030\002 \002(\001\022\016\n\006Psleep\030\003 \002(\001\022\017\n\007P"
-    "active\030\004 \002(\001\022\022\n\nPswitching\030\005 \002(\001\022\013\n\003bet\030"
-    "\006 \002(\001\022\r\n\005speed\030\007 \003(\005\"[\n\010Hardware\022%\n\005type"
-    "s\030\001 \003(\0132\026.Problem.ProcessorType\022\022\n\nproce"
-    "ssors\030\002 \003(\005\022\024\n\014nOfResources\030\003 \002(\005", 393);
+    "\022\016\n\006real_U\030\003 \002(\001\022\024\n\014nOfResources\030\004 \002(\005\">"
+    "\n\014Coefficients\022\n\n\002k0\030\001 \002(\001\022\n\n\002k1\030\002 \002(\001\022\n"
+    "\n\002k2\030\003 \002(\001\022\n\n\002k3\030\004 \002(\001\"C\n\013ConsAtSpeed\022\r\n"
+    "\005speed\030\001 \002(\001\022%\n\006coeffs\030\002 \002(\0132\025.Problem.C"
+    "oefficients\"y\n\010Hardware\022\023\n\013nOfClusters\030\001"
+    " \002(\005\022\013\n\003CpC\030\002 \002(\005\022\"\n\004cons\030\003 \003(\0132\024.Proble"
+    "m.ConsAtSpeed\022\024\n\014nOfResources\030\004 \002(\005\022\021\n\tr"
+    "esources\030\005 \003(\005", 454);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "problem.proto", &protobuf_RegisterTypes);
   Task::default_instance_ = new Task();
   Software::default_instance_ = new Software();
-  ProcessorType::default_instance_ = new ProcessorType();
+  Coefficients::default_instance_ = new Coefficients();
+  ConsAtSpeed::default_instance_ = new ConsAtSpeed();
   Hardware::default_instance_ = new Hardware();
   Task::default_instance_->InitAsDefaultInstance();
   Software::default_instance_->InitAsDefaultInstance();
-  ProcessorType::default_instance_->InitAsDefaultInstance();
+  Coefficients::default_instance_->InitAsDefaultInstance();
+  ConsAtSpeed::default_instance_->InitAsDefaultInstance();
   Hardware::default_instance_->InitAsDefaultInstance();
   ::google::protobuf::internal::OnShutdown(&protobuf_ShutdownFile_problem_2eproto);
 }
@@ -567,7 +594,8 @@ void Task::Swap(Task* other) {
 #ifndef _MSC_VER
 const int Software::kTasksFieldNumber;
 const int Software::kUFieldNumber;
-const int Software::kUnitsFieldNumber;
+const int Software::kRealUFieldNumber;
+const int Software::kNOfResourcesFieldNumber;
 #endif  // !_MSC_VER
 
 Software::Software()
@@ -587,7 +615,8 @@ Software::Software(const Software& from)
 void Software::SharedCtor() {
   _cached_size_ = 0;
   u_ = 0;
-  units_ = 0;
+  real_u_ = 0;
+  nofresources_ = 0;
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
 }
 
@@ -623,7 +652,8 @@ Software* Software::New() const {
 void Software::Clear() {
   if (_has_bits_[1 / 32] & (0xffu << (1 % 32))) {
     u_ = 0;
-    units_ = 0;
+    real_u_ = 0;
+    nofresources_ = 0;
   }
   tasks_.Clear();
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
@@ -663,19 +693,35 @@ bool Software::MergePartialFromCodedStream(
         } else {
           goto handle_uninterpreted;
         }
-        if (input->ExpectTag(24)) goto parse_units;
+        if (input->ExpectTag(25)) goto parse_real_U;
         break;
       }
       
-      // required int32 units = 3;
+      // required double real_U = 3;
       case 3: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_FIXED64) {
+         parse_real_U:
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   double, ::google::protobuf::internal::WireFormatLite::TYPE_DOUBLE>(
+                 input, &real_u_)));
+          set_has_real_u();
+        } else {
+          goto handle_uninterpreted;
+        }
+        if (input->ExpectTag(32)) goto parse_nOfResources;
+        break;
+      }
+      
+      // required int32 nOfResources = 4;
+      case 4: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
-         parse_units:
+         parse_nOfResources:
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
-                 input, &units_)));
-          set_has_units();
+                 input, &nofresources_)));
+          set_has_nofresources();
         } else {
           goto handle_uninterpreted;
         }
@@ -712,9 +758,14 @@ void Software::SerializeWithCachedSizes(
     ::google::protobuf::internal::WireFormatLite::WriteDouble(2, this->u(), output);
   }
   
-  // required int32 units = 3;
-  if (has_units()) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt32(3, this->units(), output);
+  // required double real_U = 3;
+  if (has_real_u()) {
+    ::google::protobuf::internal::WireFormatLite::WriteDouble(3, this->real_u(), output);
+  }
+  
+  // required int32 nOfResources = 4;
+  if (has_nofresources()) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(4, this->nofresources(), output);
   }
   
   if (!unknown_fields().empty()) {
@@ -737,9 +788,14 @@ void Software::SerializeWithCachedSizes(
     target = ::google::protobuf::internal::WireFormatLite::WriteDoubleToArray(2, this->u(), target);
   }
   
-  // required int32 units = 3;
-  if (has_units()) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(3, this->units(), target);
+  // required double real_U = 3;
+  if (has_real_u()) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteDoubleToArray(3, this->real_u(), target);
+  }
+  
+  // required int32 nOfResources = 4;
+  if (has_nofresources()) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(4, this->nofresources(), target);
   }
   
   if (!unknown_fields().empty()) {
@@ -758,11 +814,16 @@ int Software::ByteSize() const {
       total_size += 1 + 8;
     }
     
-    // required int32 units = 3;
-    if (has_units()) {
+    // required double real_U = 3;
+    if (has_real_u()) {
+      total_size += 1 + 8;
+    }
+    
+    // required int32 nOfResources = 4;
+    if (has_nofresources()) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::Int32Size(
-          this->units());
+          this->nofresources());
     }
     
   }
@@ -804,8 +865,11 @@ void Software::MergeFrom(const Software& from) {
     if (from.has_u()) {
       set_u(from.u());
     }
-    if (from.has_units()) {
-      set_units(from.units());
+    if (from.has_real_u()) {
+      set_real_u(from.real_u());
+    }
+    if (from.has_nofresources()) {
+      set_nofresources(from.nofresources());
     }
   }
   mutable_unknown_fields()->MergeFrom(from.unknown_fields());
@@ -824,7 +888,7 @@ void Software::CopyFrom(const Software& from) {
 }
 
 bool Software::IsInitialized() const {
-  if ((_has_bits_[0] & 0x00000006) != 0x00000006) return false;
+  if ((_has_bits_[0] & 0x0000000e) != 0x0000000e) return false;
   
   for (int i = 0; i < tasks_size(); i++) {
     if (!this->tasks(i).IsInitialized()) return false;
@@ -836,7 +900,8 @@ void Software::Swap(Software* other) {
   if (other != this) {
     tasks_.Swap(&other->tasks_);
     std::swap(u_, other->u_);
-    std::swap(units_, other->units_);
+    std::swap(real_u_, other->real_u_);
+    std::swap(nofresources_, other->nofresources_);
     std::swap(_has_bits_[0], other->_has_bits_[0]);
     _unknown_fields_.Swap(&other->_unknown_fields_);
     std::swap(_cached_size_, other->_cached_size_);
@@ -855,202 +920,140 @@ void Software::Swap(Software* other) {
 // ===================================================================
 
 #ifndef _MSC_VER
-const int ProcessorType::kIdFieldNumber;
-const int ProcessorType::kPidleFieldNumber;
-const int ProcessorType::kPsleepFieldNumber;
-const int ProcessorType::kPactiveFieldNumber;
-const int ProcessorType::kPswitchingFieldNumber;
-const int ProcessorType::kBetFieldNumber;
-const int ProcessorType::kSpeedFieldNumber;
+const int Coefficients::kK0FieldNumber;
+const int Coefficients::kK1FieldNumber;
+const int Coefficients::kK2FieldNumber;
+const int Coefficients::kK3FieldNumber;
 #endif  // !_MSC_VER
 
-ProcessorType::ProcessorType()
+Coefficients::Coefficients()
   : ::google::protobuf::Message() {
   SharedCtor();
 }
 
-void ProcessorType::InitAsDefaultInstance() {
+void Coefficients::InitAsDefaultInstance() {
 }
 
-ProcessorType::ProcessorType(const ProcessorType& from)
+Coefficients::Coefficients(const Coefficients& from)
   : ::google::protobuf::Message() {
   SharedCtor();
   MergeFrom(from);
 }
 
-void ProcessorType::SharedCtor() {
+void Coefficients::SharedCtor() {
   _cached_size_ = 0;
-  id_ = 0;
-  pidle_ = 0;
-  psleep_ = 0;
-  pactive_ = 0;
-  pswitching_ = 0;
-  bet_ = 0;
+  k0_ = 0;
+  k1_ = 0;
+  k2_ = 0;
+  k3_ = 0;
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
 }
 
-ProcessorType::~ProcessorType() {
+Coefficients::~Coefficients() {
   SharedDtor();
 }
 
-void ProcessorType::SharedDtor() {
+void Coefficients::SharedDtor() {
   if (this != default_instance_) {
   }
 }
 
-void ProcessorType::SetCachedSize(int size) const {
+void Coefficients::SetCachedSize(int size) const {
   GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
   _cached_size_ = size;
   GOOGLE_SAFE_CONCURRENT_WRITES_END();
 }
-const ::google::protobuf::Descriptor* ProcessorType::descriptor() {
+const ::google::protobuf::Descriptor* Coefficients::descriptor() {
   protobuf_AssignDescriptorsOnce();
-  return ProcessorType_descriptor_;
+  return Coefficients_descriptor_;
 }
 
-const ProcessorType& ProcessorType::default_instance() {
+const Coefficients& Coefficients::default_instance() {
   if (default_instance_ == NULL) protobuf_AddDesc_problem_2eproto();  return *default_instance_;
 }
 
-ProcessorType* ProcessorType::default_instance_ = NULL;
+Coefficients* Coefficients::default_instance_ = NULL;
 
-ProcessorType* ProcessorType::New() const {
-  return new ProcessorType;
+Coefficients* Coefficients::New() const {
+  return new Coefficients;
 }
 
-void ProcessorType::Clear() {
+void Coefficients::Clear() {
   if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    id_ = 0;
-    pidle_ = 0;
-    psleep_ = 0;
-    pactive_ = 0;
-    pswitching_ = 0;
-    bet_ = 0;
+    k0_ = 0;
+    k1_ = 0;
+    k2_ = 0;
+    k3_ = 0;
   }
-  speed_.Clear();
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
   mutable_unknown_fields()->Clear();
 }
 
-bool ProcessorType::MergePartialFromCodedStream(
+bool Coefficients::MergePartialFromCodedStream(
     ::google::protobuf::io::CodedInputStream* input) {
 #define DO_(EXPRESSION) if (!(EXPRESSION)) return false
   ::google::protobuf::uint32 tag;
   while ((tag = input->ReadTag()) != 0) {
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // required int32 id = 1;
+      // required double k0 = 1;
       case 1: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_FIXED64) {
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
-                 input, &id_)));
-          set_has_id();
+                   double, ::google::protobuf::internal::WireFormatLite::TYPE_DOUBLE>(
+                 input, &k0_)));
+          set_has_k0();
         } else {
           goto handle_uninterpreted;
         }
-        if (input->ExpectTag(17)) goto parse_Pidle;
+        if (input->ExpectTag(17)) goto parse_k1;
         break;
       }
       
-      // required double Pidle = 2;
+      // required double k1 = 2;
       case 2: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_FIXED64) {
-         parse_Pidle:
+         parse_k1:
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    double, ::google::protobuf::internal::WireFormatLite::TYPE_DOUBLE>(
-                 input, &pidle_)));
-          set_has_pidle();
+                 input, &k1_)));
+          set_has_k1();
         } else {
           goto handle_uninterpreted;
         }
-        if (input->ExpectTag(25)) goto parse_Psleep;
+        if (input->ExpectTag(25)) goto parse_k2;
         break;
       }
       
-      // required double Psleep = 3;
+      // required double k2 = 3;
       case 3: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_FIXED64) {
-         parse_Psleep:
+         parse_k2:
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    double, ::google::protobuf::internal::WireFormatLite::TYPE_DOUBLE>(
-                 input, &psleep_)));
-          set_has_psleep();
+                 input, &k2_)));
+          set_has_k2();
         } else {
           goto handle_uninterpreted;
         }
-        if (input->ExpectTag(33)) goto parse_Pactive;
+        if (input->ExpectTag(33)) goto parse_k3;
         break;
       }
       
-      // required double Pactive = 4;
+      // required double k3 = 4;
       case 4: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_FIXED64) {
-         parse_Pactive:
+         parse_k3:
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    double, ::google::protobuf::internal::WireFormatLite::TYPE_DOUBLE>(
-                 input, &pactive_)));
-          set_has_pactive();
+                 input, &k3_)));
+          set_has_k3();
         } else {
           goto handle_uninterpreted;
         }
-        if (input->ExpectTag(41)) goto parse_Pswitching;
-        break;
-      }
-      
-      // required double Pswitching = 5;
-      case 5: {
-        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_FIXED64) {
-         parse_Pswitching:
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   double, ::google::protobuf::internal::WireFormatLite::TYPE_DOUBLE>(
-                 input, &pswitching_)));
-          set_has_pswitching();
-        } else {
-          goto handle_uninterpreted;
-        }
-        if (input->ExpectTag(49)) goto parse_bet;
-        break;
-      }
-      
-      // required double bet = 6;
-      case 6: {
-        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_FIXED64) {
-         parse_bet:
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   double, ::google::protobuf::internal::WireFormatLite::TYPE_DOUBLE>(
-                 input, &bet_)));
-          set_has_bet();
-        } else {
-          goto handle_uninterpreted;
-        }
-        if (input->ExpectTag(56)) goto parse_speed;
-        break;
-      }
-      
-      // repeated int32 speed = 7;
-      case 7: {
-        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
-         parse_speed:
-          DO_((::google::protobuf::internal::WireFormatLite::ReadRepeatedPrimitive<
-                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
-                 1, 56, input, this->mutable_speed())));
-        } else if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag)
-                   == ::google::protobuf::internal::WireFormatLite::
-                      WIRETYPE_LENGTH_DELIMITED) {
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPackedPrimitiveNoInline<
-                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
-                 input, this->mutable_speed())));
-        } else {
-          goto handle_uninterpreted;
-        }
-        if (input->ExpectTag(56)) goto parse_speed;
         if (input->ExpectAtEnd()) return true;
         break;
       }
@@ -1071,42 +1074,26 @@ bool ProcessorType::MergePartialFromCodedStream(
 #undef DO_
 }
 
-void ProcessorType::SerializeWithCachedSizes(
+void Coefficients::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
-  // required int32 id = 1;
-  if (has_id()) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt32(1, this->id(), output);
+  // required double k0 = 1;
+  if (has_k0()) {
+    ::google::protobuf::internal::WireFormatLite::WriteDouble(1, this->k0(), output);
   }
   
-  // required double Pidle = 2;
-  if (has_pidle()) {
-    ::google::protobuf::internal::WireFormatLite::WriteDouble(2, this->pidle(), output);
+  // required double k1 = 2;
+  if (has_k1()) {
+    ::google::protobuf::internal::WireFormatLite::WriteDouble(2, this->k1(), output);
   }
   
-  // required double Psleep = 3;
-  if (has_psleep()) {
-    ::google::protobuf::internal::WireFormatLite::WriteDouble(3, this->psleep(), output);
+  // required double k2 = 3;
+  if (has_k2()) {
+    ::google::protobuf::internal::WireFormatLite::WriteDouble(3, this->k2(), output);
   }
   
-  // required double Pactive = 4;
-  if (has_pactive()) {
-    ::google::protobuf::internal::WireFormatLite::WriteDouble(4, this->pactive(), output);
-  }
-  
-  // required double Pswitching = 5;
-  if (has_pswitching()) {
-    ::google::protobuf::internal::WireFormatLite::WriteDouble(5, this->pswitching(), output);
-  }
-  
-  // required double bet = 6;
-  if (has_bet()) {
-    ::google::protobuf::internal::WireFormatLite::WriteDouble(6, this->bet(), output);
-  }
-  
-  // repeated int32 speed = 7;
-  for (int i = 0; i < this->speed_size(); i++) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt32(
-      7, this->speed(i), output);
+  // required double k3 = 4;
+  if (has_k3()) {
+    ::google::protobuf::internal::WireFormatLite::WriteDouble(4, this->k3(), output);
   }
   
   if (!unknown_fields().empty()) {
@@ -1115,42 +1102,26 @@ void ProcessorType::SerializeWithCachedSizes(
   }
 }
 
-::google::protobuf::uint8* ProcessorType::SerializeWithCachedSizesToArray(
+::google::protobuf::uint8* Coefficients::SerializeWithCachedSizesToArray(
     ::google::protobuf::uint8* target) const {
-  // required int32 id = 1;
-  if (has_id()) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(1, this->id(), target);
+  // required double k0 = 1;
+  if (has_k0()) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteDoubleToArray(1, this->k0(), target);
   }
   
-  // required double Pidle = 2;
-  if (has_pidle()) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteDoubleToArray(2, this->pidle(), target);
+  // required double k1 = 2;
+  if (has_k1()) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteDoubleToArray(2, this->k1(), target);
   }
   
-  // required double Psleep = 3;
-  if (has_psleep()) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteDoubleToArray(3, this->psleep(), target);
+  // required double k2 = 3;
+  if (has_k2()) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteDoubleToArray(3, this->k2(), target);
   }
   
-  // required double Pactive = 4;
-  if (has_pactive()) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteDoubleToArray(4, this->pactive(), target);
-  }
-  
-  // required double Pswitching = 5;
-  if (has_pswitching()) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteDoubleToArray(5, this->pswitching(), target);
-  }
-  
-  // required double bet = 6;
-  if (has_bet()) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteDoubleToArray(6, this->bet(), target);
-  }
-  
-  // repeated int32 speed = 7;
-  for (int i = 0; i < this->speed_size(); i++) {
-    target = ::google::protobuf::internal::WireFormatLite::
-      WriteInt32ToArray(7, this->speed(i), target);
+  // required double k3 = 4;
+  if (has_k3()) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteDoubleToArray(4, this->k3(), target);
   }
   
   if (!unknown_fields().empty()) {
@@ -1160,53 +1131,31 @@ void ProcessorType::SerializeWithCachedSizes(
   return target;
 }
 
-int ProcessorType::ByteSize() const {
+int Coefficients::ByteSize() const {
   int total_size = 0;
   
   if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    // required int32 id = 1;
-    if (has_id()) {
-      total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::Int32Size(
-          this->id());
-    }
-    
-    // required double Pidle = 2;
-    if (has_pidle()) {
+    // required double k0 = 1;
+    if (has_k0()) {
       total_size += 1 + 8;
     }
     
-    // required double Psleep = 3;
-    if (has_psleep()) {
+    // required double k1 = 2;
+    if (has_k1()) {
       total_size += 1 + 8;
     }
     
-    // required double Pactive = 4;
-    if (has_pactive()) {
+    // required double k2 = 3;
+    if (has_k2()) {
       total_size += 1 + 8;
     }
     
-    // required double Pswitching = 5;
-    if (has_pswitching()) {
-      total_size += 1 + 8;
-    }
-    
-    // required double bet = 6;
-    if (has_bet()) {
+    // required double k3 = 4;
+    if (has_k3()) {
       total_size += 1 + 8;
     }
     
   }
-  // repeated int32 speed = 7;
-  {
-    int data_size = 0;
-    for (int i = 0; i < this->speed_size(); i++) {
-      data_size += ::google::protobuf::internal::WireFormatLite::
-        Int32Size(this->speed(i));
-    }
-    total_size += 1 * this->speed_size() + data_size;
-  }
-  
   if (!unknown_fields().empty()) {
     total_size +=
       ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
@@ -1218,10 +1167,10 @@ int ProcessorType::ByteSize() const {
   return total_size;
 }
 
-void ProcessorType::MergeFrom(const ::google::protobuf::Message& from) {
+void Coefficients::MergeFrom(const ::google::protobuf::Message& from) {
   GOOGLE_CHECK_NE(&from, this);
-  const ProcessorType* source =
-    ::google::protobuf::internal::dynamic_cast_if_available<const ProcessorType*>(
+  const Coefficients* source =
+    ::google::protobuf::internal::dynamic_cast_if_available<const Coefficients*>(
       &from);
   if (source == NULL) {
     ::google::protobuf::internal::ReflectionOps::Merge(from, this);
@@ -1230,70 +1179,60 @@ void ProcessorType::MergeFrom(const ::google::protobuf::Message& from) {
   }
 }
 
-void ProcessorType::MergeFrom(const ProcessorType& from) {
+void Coefficients::MergeFrom(const Coefficients& from) {
   GOOGLE_CHECK_NE(&from, this);
-  speed_.MergeFrom(from.speed_);
   if (from._has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    if (from.has_id()) {
-      set_id(from.id());
+    if (from.has_k0()) {
+      set_k0(from.k0());
     }
-    if (from.has_pidle()) {
-      set_pidle(from.pidle());
+    if (from.has_k1()) {
+      set_k1(from.k1());
     }
-    if (from.has_psleep()) {
-      set_psleep(from.psleep());
+    if (from.has_k2()) {
+      set_k2(from.k2());
     }
-    if (from.has_pactive()) {
-      set_pactive(from.pactive());
-    }
-    if (from.has_pswitching()) {
-      set_pswitching(from.pswitching());
-    }
-    if (from.has_bet()) {
-      set_bet(from.bet());
+    if (from.has_k3()) {
+      set_k3(from.k3());
     }
   }
   mutable_unknown_fields()->MergeFrom(from.unknown_fields());
 }
 
-void ProcessorType::CopyFrom(const ::google::protobuf::Message& from) {
+void Coefficients::CopyFrom(const ::google::protobuf::Message& from) {
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
-void ProcessorType::CopyFrom(const ProcessorType& from) {
+void Coefficients::CopyFrom(const Coefficients& from) {
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
-bool ProcessorType::IsInitialized() const {
-  if ((_has_bits_[0] & 0x0000003f) != 0x0000003f) return false;
+bool Coefficients::IsInitialized() const {
+  if ((_has_bits_[0] & 0x0000000f) != 0x0000000f) return false;
   
   return true;
 }
 
-void ProcessorType::Swap(ProcessorType* other) {
+void Coefficients::Swap(Coefficients* other) {
   if (other != this) {
-    std::swap(id_, other->id_);
-    std::swap(pidle_, other->pidle_);
-    std::swap(psleep_, other->psleep_);
-    std::swap(pactive_, other->pactive_);
-    std::swap(pswitching_, other->pswitching_);
-    std::swap(bet_, other->bet_);
-    speed_.Swap(&other->speed_);
+    std::swap(k0_, other->k0_);
+    std::swap(k1_, other->k1_);
+    std::swap(k2_, other->k2_);
+    std::swap(k3_, other->k3_);
     std::swap(_has_bits_[0], other->_has_bits_[0]);
     _unknown_fields_.Swap(&other->_unknown_fields_);
     std::swap(_cached_size_, other->_cached_size_);
   }
 }
 
-::google::protobuf::Metadata ProcessorType::GetMetadata() const {
+::google::protobuf::Metadata Coefficients::GetMetadata() const {
   protobuf_AssignDescriptorsOnce();
   ::google::protobuf::Metadata metadata;
-  metadata.descriptor = ProcessorType_descriptor_;
-  metadata.reflection = ProcessorType_reflection_;
+  metadata.descriptor = Coefficients_descriptor_;
+  metadata.reflection = Coefficients_reflection_;
   return metadata;
 }
 
@@ -1301,9 +1240,265 @@ void ProcessorType::Swap(ProcessorType* other) {
 // ===================================================================
 
 #ifndef _MSC_VER
-const int Hardware::kTypesFieldNumber;
-const int Hardware::kProcessorsFieldNumber;
+const int ConsAtSpeed::kSpeedFieldNumber;
+const int ConsAtSpeed::kCoeffsFieldNumber;
+#endif  // !_MSC_VER
+
+ConsAtSpeed::ConsAtSpeed()
+  : ::google::protobuf::Message() {
+  SharedCtor();
+}
+
+void ConsAtSpeed::InitAsDefaultInstance() {
+  coeffs_ = const_cast< ::Problem::Coefficients*>(&::Problem::Coefficients::default_instance());
+}
+
+ConsAtSpeed::ConsAtSpeed(const ConsAtSpeed& from)
+  : ::google::protobuf::Message() {
+  SharedCtor();
+  MergeFrom(from);
+}
+
+void ConsAtSpeed::SharedCtor() {
+  _cached_size_ = 0;
+  speed_ = 0;
+  coeffs_ = NULL;
+  ::memset(_has_bits_, 0, sizeof(_has_bits_));
+}
+
+ConsAtSpeed::~ConsAtSpeed() {
+  SharedDtor();
+}
+
+void ConsAtSpeed::SharedDtor() {
+  if (this != default_instance_) {
+    delete coeffs_;
+  }
+}
+
+void ConsAtSpeed::SetCachedSize(int size) const {
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+}
+const ::google::protobuf::Descriptor* ConsAtSpeed::descriptor() {
+  protobuf_AssignDescriptorsOnce();
+  return ConsAtSpeed_descriptor_;
+}
+
+const ConsAtSpeed& ConsAtSpeed::default_instance() {
+  if (default_instance_ == NULL) protobuf_AddDesc_problem_2eproto();  return *default_instance_;
+}
+
+ConsAtSpeed* ConsAtSpeed::default_instance_ = NULL;
+
+ConsAtSpeed* ConsAtSpeed::New() const {
+  return new ConsAtSpeed;
+}
+
+void ConsAtSpeed::Clear() {
+  if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
+    speed_ = 0;
+    if (has_coeffs()) {
+      if (coeffs_ != NULL) coeffs_->::Problem::Coefficients::Clear();
+    }
+  }
+  ::memset(_has_bits_, 0, sizeof(_has_bits_));
+  mutable_unknown_fields()->Clear();
+}
+
+bool ConsAtSpeed::MergePartialFromCodedStream(
+    ::google::protobuf::io::CodedInputStream* input) {
+#define DO_(EXPRESSION) if (!(EXPRESSION)) return false
+  ::google::protobuf::uint32 tag;
+  while ((tag = input->ReadTag()) != 0) {
+    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+      // required double speed = 1;
+      case 1: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_FIXED64) {
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   double, ::google::protobuf::internal::WireFormatLite::TYPE_DOUBLE>(
+                 input, &speed_)));
+          set_has_speed();
+        } else {
+          goto handle_uninterpreted;
+        }
+        if (input->ExpectTag(18)) goto parse_coeffs;
+        break;
+      }
+      
+      // required .Problem.Coefficients coeffs = 2;
+      case 2: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+         parse_coeffs:
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+               input, mutable_coeffs()));
+        } else {
+          goto handle_uninterpreted;
+        }
+        if (input->ExpectAtEnd()) return true;
+        break;
+      }
+      
+      default: {
+      handle_uninterpreted:
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
+          return true;
+        }
+        DO_(::google::protobuf::internal::WireFormat::SkipField(
+              input, tag, mutable_unknown_fields()));
+        break;
+      }
+    }
+  }
+  return true;
+#undef DO_
+}
+
+void ConsAtSpeed::SerializeWithCachedSizes(
+    ::google::protobuf::io::CodedOutputStream* output) const {
+  // required double speed = 1;
+  if (has_speed()) {
+    ::google::protobuf::internal::WireFormatLite::WriteDouble(1, this->speed(), output);
+  }
+  
+  // required .Problem.Coefficients coeffs = 2;
+  if (has_coeffs()) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
+      2, this->coeffs(), output);
+  }
+  
+  if (!unknown_fields().empty()) {
+    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
+        unknown_fields(), output);
+  }
+}
+
+::google::protobuf::uint8* ConsAtSpeed::SerializeWithCachedSizesToArray(
+    ::google::protobuf::uint8* target) const {
+  // required double speed = 1;
+  if (has_speed()) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteDoubleToArray(1, this->speed(), target);
+  }
+  
+  // required .Problem.Coefficients coeffs = 2;
+  if (has_coeffs()) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        2, this->coeffs(), target);
+  }
+  
+  if (!unknown_fields().empty()) {
+    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
+        unknown_fields(), target);
+  }
+  return target;
+}
+
+int ConsAtSpeed::ByteSize() const {
+  int total_size = 0;
+  
+  if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
+    // required double speed = 1;
+    if (has_speed()) {
+      total_size += 1 + 8;
+    }
+    
+    // required .Problem.Coefficients coeffs = 2;
+    if (has_coeffs()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          this->coeffs());
+    }
+    
+  }
+  if (!unknown_fields().empty()) {
+    total_size +=
+      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
+        unknown_fields());
+  }
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = total_size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+  return total_size;
+}
+
+void ConsAtSpeed::MergeFrom(const ::google::protobuf::Message& from) {
+  GOOGLE_CHECK_NE(&from, this);
+  const ConsAtSpeed* source =
+    ::google::protobuf::internal::dynamic_cast_if_available<const ConsAtSpeed*>(
+      &from);
+  if (source == NULL) {
+    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
+  } else {
+    MergeFrom(*source);
+  }
+}
+
+void ConsAtSpeed::MergeFrom(const ConsAtSpeed& from) {
+  GOOGLE_CHECK_NE(&from, this);
+  if (from._has_bits_[0 / 32] & (0xffu << (0 % 32))) {
+    if (from.has_speed()) {
+      set_speed(from.speed());
+    }
+    if (from.has_coeffs()) {
+      mutable_coeffs()->::Problem::Coefficients::MergeFrom(from.coeffs());
+    }
+  }
+  mutable_unknown_fields()->MergeFrom(from.unknown_fields());
+}
+
+void ConsAtSpeed::CopyFrom(const ::google::protobuf::Message& from) {
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void ConsAtSpeed::CopyFrom(const ConsAtSpeed& from) {
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool ConsAtSpeed::IsInitialized() const {
+  if ((_has_bits_[0] & 0x00000003) != 0x00000003) return false;
+  
+  if (has_coeffs()) {
+    if (!this->coeffs().IsInitialized()) return false;
+  }
+  return true;
+}
+
+void ConsAtSpeed::Swap(ConsAtSpeed* other) {
+  if (other != this) {
+    std::swap(speed_, other->speed_);
+    std::swap(coeffs_, other->coeffs_);
+    std::swap(_has_bits_[0], other->_has_bits_[0]);
+    _unknown_fields_.Swap(&other->_unknown_fields_);
+    std::swap(_cached_size_, other->_cached_size_);
+  }
+}
+
+::google::protobuf::Metadata ConsAtSpeed::GetMetadata() const {
+  protobuf_AssignDescriptorsOnce();
+  ::google::protobuf::Metadata metadata;
+  metadata.descriptor = ConsAtSpeed_descriptor_;
+  metadata.reflection = ConsAtSpeed_reflection_;
+  return metadata;
+}
+
+
+// ===================================================================
+
+#ifndef _MSC_VER
+const int Hardware::kNOfClustersFieldNumber;
+const int Hardware::kCpCFieldNumber;
+const int Hardware::kConsFieldNumber;
 const int Hardware::kNOfResourcesFieldNumber;
+const int Hardware::kResourcesFieldNumber;
 #endif  // !_MSC_VER
 
 Hardware::Hardware()
@@ -1322,6 +1517,8 @@ Hardware::Hardware(const Hardware& from)
 
 void Hardware::SharedCtor() {
   _cached_size_ = 0;
+  nofclusters_ = 0;
+  cpc_ = 0;
   nofresources_ = 0;
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
 }
@@ -1356,11 +1553,13 @@ Hardware* Hardware::New() const {
 }
 
 void Hardware::Clear() {
-  if (_has_bits_[2 / 32] & (0xffu << (2 % 32))) {
+  if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
+    nofclusters_ = 0;
+    cpc_ = 0;
     nofresources_ = 0;
   }
-  types_.Clear();
-  processors_.Clear();
+  cons_.Clear();
+  resources_.Clear();
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
   mutable_unknown_fields()->Clear();
 }
@@ -1371,45 +1570,54 @@ bool Hardware::MergePartialFromCodedStream(
   ::google::protobuf::uint32 tag;
   while ((tag = input->ReadTag()) != 0) {
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // repeated .Problem.ProcessorType types = 1;
+      // required int32 nOfClusters = 1;
       case 1: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
-         parse_types:
-          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
-                input, add_types()));
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
+                 input, &nofclusters_)));
+          set_has_nofclusters();
         } else {
           goto handle_uninterpreted;
         }
-        if (input->ExpectTag(10)) goto parse_types;
-        if (input->ExpectTag(16)) goto parse_processors;
+        if (input->ExpectTag(16)) goto parse_CpC;
         break;
       }
       
-      // repeated int32 processors = 2;
+      // required int32 CpC = 2;
       case 2: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
-         parse_processors:
-          DO_((::google::protobuf::internal::WireFormatLite::ReadRepeatedPrimitive<
+         parse_CpC:
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
-                 1, 16, input, this->mutable_processors())));
-        } else if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag)
-                   == ::google::protobuf::internal::WireFormatLite::
-                      WIRETYPE_LENGTH_DELIMITED) {
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPackedPrimitiveNoInline<
-                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
-                 input, this->mutable_processors())));
+                 input, &cpc_)));
+          set_has_cpc();
         } else {
           goto handle_uninterpreted;
         }
-        if (input->ExpectTag(16)) goto parse_processors;
-        if (input->ExpectTag(24)) goto parse_nOfResources;
+        if (input->ExpectTag(26)) goto parse_cons;
         break;
       }
       
-      // required int32 nOfResources = 3;
+      // repeated .Problem.ConsAtSpeed cons = 3;
       case 3: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+         parse_cons:
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+                input, add_cons()));
+        } else {
+          goto handle_uninterpreted;
+        }
+        if (input->ExpectTag(26)) goto parse_cons;
+        if (input->ExpectTag(32)) goto parse_nOfResources;
+        break;
+      }
+      
+      // required int32 nOfResources = 4;
+      case 4: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
          parse_nOfResources:
@@ -1420,6 +1628,28 @@ bool Hardware::MergePartialFromCodedStream(
         } else {
           goto handle_uninterpreted;
         }
+        if (input->ExpectTag(40)) goto parse_resources;
+        break;
+      }
+      
+      // repeated int32 resources = 5;
+      case 5: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
+         parse_resources:
+          DO_((::google::protobuf::internal::WireFormatLite::ReadRepeatedPrimitive<
+                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
+                 1, 40, input, this->mutable_resources())));
+        } else if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag)
+                   == ::google::protobuf::internal::WireFormatLite::
+                      WIRETYPE_LENGTH_DELIMITED) {
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPackedPrimitiveNoInline<
+                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
+                 input, this->mutable_resources())));
+        } else {
+          goto handle_uninterpreted;
+        }
+        if (input->ExpectTag(40)) goto parse_resources;
         if (input->ExpectAtEnd()) return true;
         break;
       }
@@ -1442,21 +1672,31 @@ bool Hardware::MergePartialFromCodedStream(
 
 void Hardware::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
-  // repeated .Problem.ProcessorType types = 1;
-  for (int i = 0; i < this->types_size(); i++) {
+  // required int32 nOfClusters = 1;
+  if (has_nofclusters()) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(1, this->nofclusters(), output);
+  }
+  
+  // required int32 CpC = 2;
+  if (has_cpc()) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(2, this->cpc(), output);
+  }
+  
+  // repeated .Problem.ConsAtSpeed cons = 3;
+  for (int i = 0; i < this->cons_size(); i++) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
-      1, this->types(i), output);
+      3, this->cons(i), output);
   }
   
-  // repeated int32 processors = 2;
-  for (int i = 0; i < this->processors_size(); i++) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt32(
-      2, this->processors(i), output);
-  }
-  
-  // required int32 nOfResources = 3;
+  // required int32 nOfResources = 4;
   if (has_nofresources()) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt32(3, this->nofresources(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(4, this->nofresources(), output);
+  }
+  
+  // repeated int32 resources = 5;
+  for (int i = 0; i < this->resources_size(); i++) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(
+      5, this->resources(i), output);
   }
   
   if (!unknown_fields().empty()) {
@@ -1467,22 +1707,32 @@ void Hardware::SerializeWithCachedSizes(
 
 ::google::protobuf::uint8* Hardware::SerializeWithCachedSizesToArray(
     ::google::protobuf::uint8* target) const {
-  // repeated .Problem.ProcessorType types = 1;
-  for (int i = 0; i < this->types_size(); i++) {
+  // required int32 nOfClusters = 1;
+  if (has_nofclusters()) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(1, this->nofclusters(), target);
+  }
+  
+  // required int32 CpC = 2;
+  if (has_cpc()) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(2, this->cpc(), target);
+  }
+  
+  // repeated .Problem.ConsAtSpeed cons = 3;
+  for (int i = 0; i < this->cons_size(); i++) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
-        1, this->types(i), target);
+        3, this->cons(i), target);
   }
   
-  // repeated int32 processors = 2;
-  for (int i = 0; i < this->processors_size(); i++) {
-    target = ::google::protobuf::internal::WireFormatLite::
-      WriteInt32ToArray(2, this->processors(i), target);
-  }
-  
-  // required int32 nOfResources = 3;
+  // required int32 nOfResources = 4;
   if (has_nofresources()) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(3, this->nofresources(), target);
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(4, this->nofresources(), target);
+  }
+  
+  // repeated int32 resources = 5;
+  for (int i = 0; i < this->resources_size(); i++) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteInt32ToArray(5, this->resources(i), target);
   }
   
   if (!unknown_fields().empty()) {
@@ -1495,8 +1745,22 @@ void Hardware::SerializeWithCachedSizes(
 int Hardware::ByteSize() const {
   int total_size = 0;
   
-  if (_has_bits_[2 / 32] & (0xffu << (2 % 32))) {
-    // required int32 nOfResources = 3;
+  if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
+    // required int32 nOfClusters = 1;
+    if (has_nofclusters()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::Int32Size(
+          this->nofclusters());
+    }
+    
+    // required int32 CpC = 2;
+    if (has_cpc()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::Int32Size(
+          this->cpc());
+    }
+    
+    // required int32 nOfResources = 4;
     if (has_nofresources()) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::Int32Size(
@@ -1504,22 +1768,22 @@ int Hardware::ByteSize() const {
     }
     
   }
-  // repeated .Problem.ProcessorType types = 1;
-  total_size += 1 * this->types_size();
-  for (int i = 0; i < this->types_size(); i++) {
+  // repeated .Problem.ConsAtSpeed cons = 3;
+  total_size += 1 * this->cons_size();
+  for (int i = 0; i < this->cons_size(); i++) {
     total_size +=
       ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
-        this->types(i));
+        this->cons(i));
   }
   
-  // repeated int32 processors = 2;
+  // repeated int32 resources = 5;
   {
     int data_size = 0;
-    for (int i = 0; i < this->processors_size(); i++) {
+    for (int i = 0; i < this->resources_size(); i++) {
       data_size += ::google::protobuf::internal::WireFormatLite::
-        Int32Size(this->processors(i));
+        Int32Size(this->resources(i));
     }
-    total_size += 1 * this->processors_size() + data_size;
+    total_size += 1 * this->resources_size() + data_size;
   }
   
   if (!unknown_fields().empty()) {
@@ -1547,9 +1811,15 @@ void Hardware::MergeFrom(const ::google::protobuf::Message& from) {
 
 void Hardware::MergeFrom(const Hardware& from) {
   GOOGLE_CHECK_NE(&from, this);
-  types_.MergeFrom(from.types_);
-  processors_.MergeFrom(from.processors_);
-  if (from._has_bits_[2 / 32] & (0xffu << (2 % 32))) {
+  cons_.MergeFrom(from.cons_);
+  resources_.MergeFrom(from.resources_);
+  if (from._has_bits_[0 / 32] & (0xffu << (0 % 32))) {
+    if (from.has_nofclusters()) {
+      set_nofclusters(from.nofclusters());
+    }
+    if (from.has_cpc()) {
+      set_cpc(from.cpc());
+    }
     if (from.has_nofresources()) {
       set_nofresources(from.nofresources());
     }
@@ -1570,19 +1840,21 @@ void Hardware::CopyFrom(const Hardware& from) {
 }
 
 bool Hardware::IsInitialized() const {
-  if ((_has_bits_[0] & 0x00000004) != 0x00000004) return false;
+  if ((_has_bits_[0] & 0x0000000b) != 0x0000000b) return false;
   
-  for (int i = 0; i < types_size(); i++) {
-    if (!this->types(i).IsInitialized()) return false;
+  for (int i = 0; i < cons_size(); i++) {
+    if (!this->cons(i).IsInitialized()) return false;
   }
   return true;
 }
 
 void Hardware::Swap(Hardware* other) {
   if (other != this) {
-    types_.Swap(&other->types_);
-    processors_.Swap(&other->processors_);
+    std::swap(nofclusters_, other->nofclusters_);
+    std::swap(cpc_, other->cpc_);
+    cons_.Swap(&other->cons_);
     std::swap(nofresources_, other->nofresources_);
+    resources_.Swap(&other->resources_);
     std::swap(_has_bits_[0], other->_has_bits_[0]);
     _unknown_fields_.Swap(&other->_unknown_fields_);
     std::swap(_cached_size_, other->_cached_size_);

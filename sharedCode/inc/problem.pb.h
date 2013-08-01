@@ -34,7 +34,8 @@ void protobuf_ShutdownFile_problem_2eproto();
 
 class Task;
 class Software;
-class ProcessorType;
+class Coefficients;
+class ConsAtSpeed;
 class Hardware;
 
 // ===================================================================
@@ -237,28 +238,38 @@ class Software : public ::google::protobuf::Message {
   inline double u() const;
   inline void set_u(double value);
   
-  // required int32 units = 3;
-  inline bool has_units() const;
-  inline void clear_units();
-  static const int kUnitsFieldNumber = 3;
-  inline ::google::protobuf::int32 units() const;
-  inline void set_units(::google::protobuf::int32 value);
+  // required double real_U = 3;
+  inline bool has_real_u() const;
+  inline void clear_real_u();
+  static const int kRealUFieldNumber = 3;
+  inline double real_u() const;
+  inline void set_real_u(double value);
+  
+  // required int32 nOfResources = 4;
+  inline bool has_nofresources() const;
+  inline void clear_nofresources();
+  static const int kNOfResourcesFieldNumber = 4;
+  inline ::google::protobuf::int32 nofresources() const;
+  inline void set_nofresources(::google::protobuf::int32 value);
   
   // @@protoc_insertion_point(class_scope:Problem.Software)
  private:
   inline void set_has_u();
   inline void clear_has_u();
-  inline void set_has_units();
-  inline void clear_has_units();
+  inline void set_has_real_u();
+  inline void clear_has_real_u();
+  inline void set_has_nofresources();
+  inline void clear_has_nofresources();
   
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
   
   ::google::protobuf::RepeatedPtrField< ::Problem::Task > tasks_;
   double u_;
-  ::google::protobuf::int32 units_;
+  double real_u_;
+  ::google::protobuf::int32 nofresources_;
   
   mutable int _cached_size_;
-  ::google::protobuf::uint32 _has_bits_[(3 + 31) / 32];
+  ::google::protobuf::uint32 _has_bits_[(4 + 31) / 32];
   
   friend void  protobuf_AddDesc_problem_2eproto();
   friend void protobuf_AssignDesc_problem_2eproto();
@@ -269,14 +280,14 @@ class Software : public ::google::protobuf::Message {
 };
 // -------------------------------------------------------------------
 
-class ProcessorType : public ::google::protobuf::Message {
+class Coefficients : public ::google::protobuf::Message {
  public:
-  ProcessorType();
-  virtual ~ProcessorType();
+  Coefficients();
+  virtual ~Coefficients();
   
-  ProcessorType(const ProcessorType& from);
+  Coefficients(const Coefficients& from);
   
-  inline ProcessorType& operator=(const ProcessorType& from) {
+  inline Coefficients& operator=(const Coefficients& from) {
     CopyFrom(from);
     return *this;
   }
@@ -290,17 +301,17 @@ class ProcessorType : public ::google::protobuf::Message {
   }
   
   static const ::google::protobuf::Descriptor* descriptor();
-  static const ProcessorType& default_instance();
+  static const Coefficients& default_instance();
   
-  void Swap(ProcessorType* other);
+  void Swap(Coefficients* other);
   
   // implements Message ----------------------------------------------
   
-  ProcessorType* New() const;
+  Coefficients* New() const;
   void CopyFrom(const ::google::protobuf::Message& from);
   void MergeFrom(const ::google::protobuf::Message& from);
-  void CopyFrom(const ProcessorType& from);
-  void MergeFrom(const ProcessorType& from);
+  void CopyFrom(const Coefficients& from);
+  void MergeFrom(const Coefficients& from);
   void Clear();
   bool IsInitialized() const;
   
@@ -323,94 +334,154 @@ class ProcessorType : public ::google::protobuf::Message {
   
   // accessors -------------------------------------------------------
   
-  // required int32 id = 1;
-  inline bool has_id() const;
-  inline void clear_id();
-  static const int kIdFieldNumber = 1;
-  inline ::google::protobuf::int32 id() const;
-  inline void set_id(::google::protobuf::int32 value);
+  // required double k0 = 1;
+  inline bool has_k0() const;
+  inline void clear_k0();
+  static const int kK0FieldNumber = 1;
+  inline double k0() const;
+  inline void set_k0(double value);
   
-  // required double Pidle = 2;
-  inline bool has_pidle() const;
-  inline void clear_pidle();
-  static const int kPidleFieldNumber = 2;
-  inline double pidle() const;
-  inline void set_pidle(double value);
+  // required double k1 = 2;
+  inline bool has_k1() const;
+  inline void clear_k1();
+  static const int kK1FieldNumber = 2;
+  inline double k1() const;
+  inline void set_k1(double value);
   
-  // required double Psleep = 3;
-  inline bool has_psleep() const;
-  inline void clear_psleep();
-  static const int kPsleepFieldNumber = 3;
-  inline double psleep() const;
-  inline void set_psleep(double value);
+  // required double k2 = 3;
+  inline bool has_k2() const;
+  inline void clear_k2();
+  static const int kK2FieldNumber = 3;
+  inline double k2() const;
+  inline void set_k2(double value);
   
-  // required double Pactive = 4;
-  inline bool has_pactive() const;
-  inline void clear_pactive();
-  static const int kPactiveFieldNumber = 4;
-  inline double pactive() const;
-  inline void set_pactive(double value);
+  // required double k3 = 4;
+  inline bool has_k3() const;
+  inline void clear_k3();
+  static const int kK3FieldNumber = 4;
+  inline double k3() const;
+  inline void set_k3(double value);
   
-  // required double Pswitching = 5;
-  inline bool has_pswitching() const;
-  inline void clear_pswitching();
-  static const int kPswitchingFieldNumber = 5;
-  inline double pswitching() const;
-  inline void set_pswitching(double value);
-  
-  // required double bet = 6;
-  inline bool has_bet() const;
-  inline void clear_bet();
-  static const int kBetFieldNumber = 6;
-  inline double bet() const;
-  inline void set_bet(double value);
-  
-  // repeated int32 speed = 7;
-  inline int speed_size() const;
-  inline void clear_speed();
-  static const int kSpeedFieldNumber = 7;
-  inline ::google::protobuf::int32 speed(int index) const;
-  inline void set_speed(int index, ::google::protobuf::int32 value);
-  inline void add_speed(::google::protobuf::int32 value);
-  inline const ::google::protobuf::RepeatedField< ::google::protobuf::int32 >&
-      speed() const;
-  inline ::google::protobuf::RepeatedField< ::google::protobuf::int32 >*
-      mutable_speed();
-  
-  // @@protoc_insertion_point(class_scope:Problem.ProcessorType)
+  // @@protoc_insertion_point(class_scope:Problem.Coefficients)
  private:
-  inline void set_has_id();
-  inline void clear_has_id();
-  inline void set_has_pidle();
-  inline void clear_has_pidle();
-  inline void set_has_psleep();
-  inline void clear_has_psleep();
-  inline void set_has_pactive();
-  inline void clear_has_pactive();
-  inline void set_has_pswitching();
-  inline void clear_has_pswitching();
-  inline void set_has_bet();
-  inline void clear_has_bet();
+  inline void set_has_k0();
+  inline void clear_has_k0();
+  inline void set_has_k1();
+  inline void clear_has_k1();
+  inline void set_has_k2();
+  inline void clear_has_k2();
+  inline void set_has_k3();
+  inline void clear_has_k3();
   
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
   
-  double pidle_;
-  double psleep_;
-  double pactive_;
-  double pswitching_;
-  double bet_;
-  ::google::protobuf::RepeatedField< ::google::protobuf::int32 > speed_;
-  ::google::protobuf::int32 id_;
+  double k0_;
+  double k1_;
+  double k2_;
+  double k3_;
   
   mutable int _cached_size_;
-  ::google::protobuf::uint32 _has_bits_[(7 + 31) / 32];
+  ::google::protobuf::uint32 _has_bits_[(4 + 31) / 32];
   
   friend void  protobuf_AddDesc_problem_2eproto();
   friend void protobuf_AssignDesc_problem_2eproto();
   friend void protobuf_ShutdownFile_problem_2eproto();
   
   void InitAsDefaultInstance();
-  static ProcessorType* default_instance_;
+  static Coefficients* default_instance_;
+};
+// -------------------------------------------------------------------
+
+class ConsAtSpeed : public ::google::protobuf::Message {
+ public:
+  ConsAtSpeed();
+  virtual ~ConsAtSpeed();
+  
+  ConsAtSpeed(const ConsAtSpeed& from);
+  
+  inline ConsAtSpeed& operator=(const ConsAtSpeed& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _unknown_fields_;
+  }
+  
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return &_unknown_fields_;
+  }
+  
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const ConsAtSpeed& default_instance();
+  
+  void Swap(ConsAtSpeed* other);
+  
+  // implements Message ----------------------------------------------
+  
+  ConsAtSpeed* New() const;
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
+  void CopyFrom(const ConsAtSpeed& from);
+  void MergeFrom(const ConsAtSpeed& from);
+  void Clear();
+  bool IsInitialized() const;
+  
+  int ByteSize() const;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input);
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const;
+  public:
+  
+  ::google::protobuf::Metadata GetMetadata() const;
+  
+  // nested types ----------------------------------------------------
+  
+  // accessors -------------------------------------------------------
+  
+  // required double speed = 1;
+  inline bool has_speed() const;
+  inline void clear_speed();
+  static const int kSpeedFieldNumber = 1;
+  inline double speed() const;
+  inline void set_speed(double value);
+  
+  // required .Problem.Coefficients coeffs = 2;
+  inline bool has_coeffs() const;
+  inline void clear_coeffs();
+  static const int kCoeffsFieldNumber = 2;
+  inline const ::Problem::Coefficients& coeffs() const;
+  inline ::Problem::Coefficients* mutable_coeffs();
+  inline ::Problem::Coefficients* release_coeffs();
+  
+  // @@protoc_insertion_point(class_scope:Problem.ConsAtSpeed)
+ private:
+  inline void set_has_speed();
+  inline void clear_has_speed();
+  inline void set_has_coeffs();
+  inline void clear_has_coeffs();
+  
+  ::google::protobuf::UnknownFieldSet _unknown_fields_;
+  
+  double speed_;
+  ::Problem::Coefficients* coeffs_;
+  
+  mutable int _cached_size_;
+  ::google::protobuf::uint32 _has_bits_[(2 + 31) / 32];
+  
+  friend void  protobuf_AddDesc_problem_2eproto();
+  friend void protobuf_AssignDesc_problem_2eproto();
+  friend void protobuf_ShutdownFile_problem_2eproto();
+  
+  void InitAsDefaultInstance();
+  static ConsAtSpeed* default_instance_;
 };
 // -------------------------------------------------------------------
 
@@ -468,50 +539,70 @@ class Hardware : public ::google::protobuf::Message {
   
   // accessors -------------------------------------------------------
   
-  // repeated .Problem.ProcessorType types = 1;
-  inline int types_size() const;
-  inline void clear_types();
-  static const int kTypesFieldNumber = 1;
-  inline const ::Problem::ProcessorType& types(int index) const;
-  inline ::Problem::ProcessorType* mutable_types(int index);
-  inline ::Problem::ProcessorType* add_types();
-  inline const ::google::protobuf::RepeatedPtrField< ::Problem::ProcessorType >&
-      types() const;
-  inline ::google::protobuf::RepeatedPtrField< ::Problem::ProcessorType >*
-      mutable_types();
+  // required int32 nOfClusters = 1;
+  inline bool has_nofclusters() const;
+  inline void clear_nofclusters();
+  static const int kNOfClustersFieldNumber = 1;
+  inline ::google::protobuf::int32 nofclusters() const;
+  inline void set_nofclusters(::google::protobuf::int32 value);
   
-  // repeated int32 processors = 2;
-  inline int processors_size() const;
-  inline void clear_processors();
-  static const int kProcessorsFieldNumber = 2;
-  inline ::google::protobuf::int32 processors(int index) const;
-  inline void set_processors(int index, ::google::protobuf::int32 value);
-  inline void add_processors(::google::protobuf::int32 value);
-  inline const ::google::protobuf::RepeatedField< ::google::protobuf::int32 >&
-      processors() const;
-  inline ::google::protobuf::RepeatedField< ::google::protobuf::int32 >*
-      mutable_processors();
+  // required int32 CpC = 2;
+  inline bool has_cpc() const;
+  inline void clear_cpc();
+  static const int kCpCFieldNumber = 2;
+  inline ::google::protobuf::int32 cpc() const;
+  inline void set_cpc(::google::protobuf::int32 value);
   
-  // required int32 nOfResources = 3;
+  // repeated .Problem.ConsAtSpeed cons = 3;
+  inline int cons_size() const;
+  inline void clear_cons();
+  static const int kConsFieldNumber = 3;
+  inline const ::Problem::ConsAtSpeed& cons(int index) const;
+  inline ::Problem::ConsAtSpeed* mutable_cons(int index);
+  inline ::Problem::ConsAtSpeed* add_cons();
+  inline const ::google::protobuf::RepeatedPtrField< ::Problem::ConsAtSpeed >&
+      cons() const;
+  inline ::google::protobuf::RepeatedPtrField< ::Problem::ConsAtSpeed >*
+      mutable_cons();
+  
+  // required int32 nOfResources = 4;
   inline bool has_nofresources() const;
   inline void clear_nofresources();
-  static const int kNOfResourcesFieldNumber = 3;
+  static const int kNOfResourcesFieldNumber = 4;
   inline ::google::protobuf::int32 nofresources() const;
   inline void set_nofresources(::google::protobuf::int32 value);
   
+  // repeated int32 resources = 5;
+  inline int resources_size() const;
+  inline void clear_resources();
+  static const int kResourcesFieldNumber = 5;
+  inline ::google::protobuf::int32 resources(int index) const;
+  inline void set_resources(int index, ::google::protobuf::int32 value);
+  inline void add_resources(::google::protobuf::int32 value);
+  inline const ::google::protobuf::RepeatedField< ::google::protobuf::int32 >&
+      resources() const;
+  inline ::google::protobuf::RepeatedField< ::google::protobuf::int32 >*
+      mutable_resources();
+  
   // @@protoc_insertion_point(class_scope:Problem.Hardware)
  private:
+  inline void set_has_nofclusters();
+  inline void clear_has_nofclusters();
+  inline void set_has_cpc();
+  inline void clear_has_cpc();
   inline void set_has_nofresources();
   inline void clear_has_nofresources();
   
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
   
-  ::google::protobuf::RepeatedPtrField< ::Problem::ProcessorType > types_;
-  ::google::protobuf::RepeatedField< ::google::protobuf::int32 > processors_;
+  ::google::protobuf::int32 nofclusters_;
+  ::google::protobuf::int32 cpc_;
+  ::google::protobuf::RepeatedPtrField< ::Problem::ConsAtSpeed > cons_;
+  ::google::protobuf::RepeatedField< ::google::protobuf::int32 > resources_;
   ::google::protobuf::int32 nofresources_;
   
   mutable int _cached_size_;
-  ::google::protobuf::uint32 _has_bits_[(3 + 31) / 32];
+  ::google::protobuf::uint32 _has_bits_[(5 + 31) / 32];
   
   friend void  protobuf_AddDesc_problem_2eproto();
   friend void protobuf_AssignDesc_problem_2eproto();
@@ -691,252 +782,279 @@ inline void Software::set_u(double value) {
   u_ = value;
 }
 
-// required int32 units = 3;
-inline bool Software::has_units() const {
+// required double real_U = 3;
+inline bool Software::has_real_u() const {
   return (_has_bits_[0] & 0x00000004u) != 0;
 }
-inline void Software::set_has_units() {
+inline void Software::set_has_real_u() {
   _has_bits_[0] |= 0x00000004u;
 }
-inline void Software::clear_has_units() {
+inline void Software::clear_has_real_u() {
   _has_bits_[0] &= ~0x00000004u;
 }
-inline void Software::clear_units() {
-  units_ = 0;
-  clear_has_units();
+inline void Software::clear_real_u() {
+  real_u_ = 0;
+  clear_has_real_u();
 }
-inline ::google::protobuf::int32 Software::units() const {
-  return units_;
+inline double Software::real_u() const {
+  return real_u_;
 }
-inline void Software::set_units(::google::protobuf::int32 value) {
-  set_has_units();
-  units_ = value;
+inline void Software::set_real_u(double value) {
+  set_has_real_u();
+  real_u_ = value;
+}
+
+// required int32 nOfResources = 4;
+inline bool Software::has_nofresources() const {
+  return (_has_bits_[0] & 0x00000008u) != 0;
+}
+inline void Software::set_has_nofresources() {
+  _has_bits_[0] |= 0x00000008u;
+}
+inline void Software::clear_has_nofresources() {
+  _has_bits_[0] &= ~0x00000008u;
+}
+inline void Software::clear_nofresources() {
+  nofresources_ = 0;
+  clear_has_nofresources();
+}
+inline ::google::protobuf::int32 Software::nofresources() const {
+  return nofresources_;
+}
+inline void Software::set_nofresources(::google::protobuf::int32 value) {
+  set_has_nofresources();
+  nofresources_ = value;
 }
 
 // -------------------------------------------------------------------
 
-// ProcessorType
+// Coefficients
 
-// required int32 id = 1;
-inline bool ProcessorType::has_id() const {
+// required double k0 = 1;
+inline bool Coefficients::has_k0() const {
   return (_has_bits_[0] & 0x00000001u) != 0;
 }
-inline void ProcessorType::set_has_id() {
+inline void Coefficients::set_has_k0() {
   _has_bits_[0] |= 0x00000001u;
 }
-inline void ProcessorType::clear_has_id() {
+inline void Coefficients::clear_has_k0() {
   _has_bits_[0] &= ~0x00000001u;
 }
-inline void ProcessorType::clear_id() {
-  id_ = 0;
-  clear_has_id();
+inline void Coefficients::clear_k0() {
+  k0_ = 0;
+  clear_has_k0();
 }
-inline ::google::protobuf::int32 ProcessorType::id() const {
-  return id_;
+inline double Coefficients::k0() const {
+  return k0_;
 }
-inline void ProcessorType::set_id(::google::protobuf::int32 value) {
-  set_has_id();
-  id_ = value;
+inline void Coefficients::set_k0(double value) {
+  set_has_k0();
+  k0_ = value;
 }
 
-// required double Pidle = 2;
-inline bool ProcessorType::has_pidle() const {
+// required double k1 = 2;
+inline bool Coefficients::has_k1() const {
   return (_has_bits_[0] & 0x00000002u) != 0;
 }
-inline void ProcessorType::set_has_pidle() {
+inline void Coefficients::set_has_k1() {
   _has_bits_[0] |= 0x00000002u;
 }
-inline void ProcessorType::clear_has_pidle() {
+inline void Coefficients::clear_has_k1() {
   _has_bits_[0] &= ~0x00000002u;
 }
-inline void ProcessorType::clear_pidle() {
-  pidle_ = 0;
-  clear_has_pidle();
+inline void Coefficients::clear_k1() {
+  k1_ = 0;
+  clear_has_k1();
 }
-inline double ProcessorType::pidle() const {
-  return pidle_;
+inline double Coefficients::k1() const {
+  return k1_;
 }
-inline void ProcessorType::set_pidle(double value) {
-  set_has_pidle();
-  pidle_ = value;
+inline void Coefficients::set_k1(double value) {
+  set_has_k1();
+  k1_ = value;
 }
 
-// required double Psleep = 3;
-inline bool ProcessorType::has_psleep() const {
+// required double k2 = 3;
+inline bool Coefficients::has_k2() const {
   return (_has_bits_[0] & 0x00000004u) != 0;
 }
-inline void ProcessorType::set_has_psleep() {
+inline void Coefficients::set_has_k2() {
   _has_bits_[0] |= 0x00000004u;
 }
-inline void ProcessorType::clear_has_psleep() {
+inline void Coefficients::clear_has_k2() {
   _has_bits_[0] &= ~0x00000004u;
 }
-inline void ProcessorType::clear_psleep() {
-  psleep_ = 0;
-  clear_has_psleep();
+inline void Coefficients::clear_k2() {
+  k2_ = 0;
+  clear_has_k2();
 }
-inline double ProcessorType::psleep() const {
-  return psleep_;
+inline double Coefficients::k2() const {
+  return k2_;
 }
-inline void ProcessorType::set_psleep(double value) {
-  set_has_psleep();
-  psleep_ = value;
+inline void Coefficients::set_k2(double value) {
+  set_has_k2();
+  k2_ = value;
 }
 
-// required double Pactive = 4;
-inline bool ProcessorType::has_pactive() const {
+// required double k3 = 4;
+inline bool Coefficients::has_k3() const {
   return (_has_bits_[0] & 0x00000008u) != 0;
 }
-inline void ProcessorType::set_has_pactive() {
+inline void Coefficients::set_has_k3() {
   _has_bits_[0] |= 0x00000008u;
 }
-inline void ProcessorType::clear_has_pactive() {
+inline void Coefficients::clear_has_k3() {
   _has_bits_[0] &= ~0x00000008u;
 }
-inline void ProcessorType::clear_pactive() {
-  pactive_ = 0;
-  clear_has_pactive();
+inline void Coefficients::clear_k3() {
+  k3_ = 0;
+  clear_has_k3();
 }
-inline double ProcessorType::pactive() const {
-  return pactive_;
+inline double Coefficients::k3() const {
+  return k3_;
 }
-inline void ProcessorType::set_pactive(double value) {
-  set_has_pactive();
-  pactive_ = value;
-}
-
-// required double Pswitching = 5;
-inline bool ProcessorType::has_pswitching() const {
-  return (_has_bits_[0] & 0x00000010u) != 0;
-}
-inline void ProcessorType::set_has_pswitching() {
-  _has_bits_[0] |= 0x00000010u;
-}
-inline void ProcessorType::clear_has_pswitching() {
-  _has_bits_[0] &= ~0x00000010u;
-}
-inline void ProcessorType::clear_pswitching() {
-  pswitching_ = 0;
-  clear_has_pswitching();
-}
-inline double ProcessorType::pswitching() const {
-  return pswitching_;
-}
-inline void ProcessorType::set_pswitching(double value) {
-  set_has_pswitching();
-  pswitching_ = value;
+inline void Coefficients::set_k3(double value) {
+  set_has_k3();
+  k3_ = value;
 }
 
-// required double bet = 6;
-inline bool ProcessorType::has_bet() const {
-  return (_has_bits_[0] & 0x00000020u) != 0;
-}
-inline void ProcessorType::set_has_bet() {
-  _has_bits_[0] |= 0x00000020u;
-}
-inline void ProcessorType::clear_has_bet() {
-  _has_bits_[0] &= ~0x00000020u;
-}
-inline void ProcessorType::clear_bet() {
-  bet_ = 0;
-  clear_has_bet();
-}
-inline double ProcessorType::bet() const {
-  return bet_;
-}
-inline void ProcessorType::set_bet(double value) {
-  set_has_bet();
-  bet_ = value;
-}
+// -------------------------------------------------------------------
 
-// repeated int32 speed = 7;
-inline int ProcessorType::speed_size() const {
-  return speed_.size();
+// ConsAtSpeed
+
+// required double speed = 1;
+inline bool ConsAtSpeed::has_speed() const {
+  return (_has_bits_[0] & 0x00000001u) != 0;
 }
-inline void ProcessorType::clear_speed() {
-  speed_.Clear();
+inline void ConsAtSpeed::set_has_speed() {
+  _has_bits_[0] |= 0x00000001u;
 }
-inline ::google::protobuf::int32 ProcessorType::speed(int index) const {
-  return speed_.Get(index);
+inline void ConsAtSpeed::clear_has_speed() {
+  _has_bits_[0] &= ~0x00000001u;
 }
-inline void ProcessorType::set_speed(int index, ::google::protobuf::int32 value) {
-  speed_.Set(index, value);
+inline void ConsAtSpeed::clear_speed() {
+  speed_ = 0;
+  clear_has_speed();
 }
-inline void ProcessorType::add_speed(::google::protobuf::int32 value) {
-  speed_.Add(value);
-}
-inline const ::google::protobuf::RepeatedField< ::google::protobuf::int32 >&
-ProcessorType::speed() const {
+inline double ConsAtSpeed::speed() const {
   return speed_;
 }
-inline ::google::protobuf::RepeatedField< ::google::protobuf::int32 >*
-ProcessorType::mutable_speed() {
-  return &speed_;
+inline void ConsAtSpeed::set_speed(double value) {
+  set_has_speed();
+  speed_ = value;
+}
+
+// required .Problem.Coefficients coeffs = 2;
+inline bool ConsAtSpeed::has_coeffs() const {
+  return (_has_bits_[0] & 0x00000002u) != 0;
+}
+inline void ConsAtSpeed::set_has_coeffs() {
+  _has_bits_[0] |= 0x00000002u;
+}
+inline void ConsAtSpeed::clear_has_coeffs() {
+  _has_bits_[0] &= ~0x00000002u;
+}
+inline void ConsAtSpeed::clear_coeffs() {
+  if (coeffs_ != NULL) coeffs_->::Problem::Coefficients::Clear();
+  clear_has_coeffs();
+}
+inline const ::Problem::Coefficients& ConsAtSpeed::coeffs() const {
+  return coeffs_ != NULL ? *coeffs_ : *default_instance_->coeffs_;
+}
+inline ::Problem::Coefficients* ConsAtSpeed::mutable_coeffs() {
+  set_has_coeffs();
+  if (coeffs_ == NULL) coeffs_ = new ::Problem::Coefficients;
+  return coeffs_;
+}
+inline ::Problem::Coefficients* ConsAtSpeed::release_coeffs() {
+  clear_has_coeffs();
+  ::Problem::Coefficients* temp = coeffs_;
+  coeffs_ = NULL;
+  return temp;
 }
 
 // -------------------------------------------------------------------
 
 // Hardware
 
-// repeated .Problem.ProcessorType types = 1;
-inline int Hardware::types_size() const {
-  return types_.size();
+// required int32 nOfClusters = 1;
+inline bool Hardware::has_nofclusters() const {
+  return (_has_bits_[0] & 0x00000001u) != 0;
 }
-inline void Hardware::clear_types() {
-  types_.Clear();
+inline void Hardware::set_has_nofclusters() {
+  _has_bits_[0] |= 0x00000001u;
 }
-inline const ::Problem::ProcessorType& Hardware::types(int index) const {
-  return types_.Get(index);
+inline void Hardware::clear_has_nofclusters() {
+  _has_bits_[0] &= ~0x00000001u;
 }
-inline ::Problem::ProcessorType* Hardware::mutable_types(int index) {
-  return types_.Mutable(index);
+inline void Hardware::clear_nofclusters() {
+  nofclusters_ = 0;
+  clear_has_nofclusters();
 }
-inline ::Problem::ProcessorType* Hardware::add_types() {
-  return types_.Add();
+inline ::google::protobuf::int32 Hardware::nofclusters() const {
+  return nofclusters_;
 }
-inline const ::google::protobuf::RepeatedPtrField< ::Problem::ProcessorType >&
-Hardware::types() const {
-  return types_;
-}
-inline ::google::protobuf::RepeatedPtrField< ::Problem::ProcessorType >*
-Hardware::mutable_types() {
-  return &types_;
+inline void Hardware::set_nofclusters(::google::protobuf::int32 value) {
+  set_has_nofclusters();
+  nofclusters_ = value;
 }
 
-// repeated int32 processors = 2;
-inline int Hardware::processors_size() const {
-  return processors_.size();
+// required int32 CpC = 2;
+inline bool Hardware::has_cpc() const {
+  return (_has_bits_[0] & 0x00000002u) != 0;
 }
-inline void Hardware::clear_processors() {
-  processors_.Clear();
+inline void Hardware::set_has_cpc() {
+  _has_bits_[0] |= 0x00000002u;
 }
-inline ::google::protobuf::int32 Hardware::processors(int index) const {
-  return processors_.Get(index);
+inline void Hardware::clear_has_cpc() {
+  _has_bits_[0] &= ~0x00000002u;
 }
-inline void Hardware::set_processors(int index, ::google::protobuf::int32 value) {
-  processors_.Set(index, value);
+inline void Hardware::clear_cpc() {
+  cpc_ = 0;
+  clear_has_cpc();
 }
-inline void Hardware::add_processors(::google::protobuf::int32 value) {
-  processors_.Add(value);
+inline ::google::protobuf::int32 Hardware::cpc() const {
+  return cpc_;
 }
-inline const ::google::protobuf::RepeatedField< ::google::protobuf::int32 >&
-Hardware::processors() const {
-  return processors_;
-}
-inline ::google::protobuf::RepeatedField< ::google::protobuf::int32 >*
-Hardware::mutable_processors() {
-  return &processors_;
+inline void Hardware::set_cpc(::google::protobuf::int32 value) {
+  set_has_cpc();
+  cpc_ = value;
 }
 
-// required int32 nOfResources = 3;
+// repeated .Problem.ConsAtSpeed cons = 3;
+inline int Hardware::cons_size() const {
+  return cons_.size();
+}
+inline void Hardware::clear_cons() {
+  cons_.Clear();
+}
+inline const ::Problem::ConsAtSpeed& Hardware::cons(int index) const {
+  return cons_.Get(index);
+}
+inline ::Problem::ConsAtSpeed* Hardware::mutable_cons(int index) {
+  return cons_.Mutable(index);
+}
+inline ::Problem::ConsAtSpeed* Hardware::add_cons() {
+  return cons_.Add();
+}
+inline const ::google::protobuf::RepeatedPtrField< ::Problem::ConsAtSpeed >&
+Hardware::cons() const {
+  return cons_;
+}
+inline ::google::protobuf::RepeatedPtrField< ::Problem::ConsAtSpeed >*
+Hardware::mutable_cons() {
+  return &cons_;
+}
+
+// required int32 nOfResources = 4;
 inline bool Hardware::has_nofresources() const {
-  return (_has_bits_[0] & 0x00000004u) != 0;
+  return (_has_bits_[0] & 0x00000008u) != 0;
 }
 inline void Hardware::set_has_nofresources() {
-  _has_bits_[0] |= 0x00000004u;
+  _has_bits_[0] |= 0x00000008u;
 }
 inline void Hardware::clear_has_nofresources() {
-  _has_bits_[0] &= ~0x00000004u;
+  _has_bits_[0] &= ~0x00000008u;
 }
 inline void Hardware::clear_nofresources() {
   nofresources_ = 0;
@@ -948,6 +1066,31 @@ inline ::google::protobuf::int32 Hardware::nofresources() const {
 inline void Hardware::set_nofresources(::google::protobuf::int32 value) {
   set_has_nofresources();
   nofresources_ = value;
+}
+
+// repeated int32 resources = 5;
+inline int Hardware::resources_size() const {
+  return resources_.size();
+}
+inline void Hardware::clear_resources() {
+  resources_.Clear();
+}
+inline ::google::protobuf::int32 Hardware::resources(int index) const {
+  return resources_.Get(index);
+}
+inline void Hardware::set_resources(int index, ::google::protobuf::int32 value) {
+  resources_.Set(index, value);
+}
+inline void Hardware::add_resources(::google::protobuf::int32 value) {
+  resources_.Add(value);
+}
+inline const ::google::protobuf::RepeatedField< ::google::protobuf::int32 >&
+Hardware::resources() const {
+  return resources_;
+}
+inline ::google::protobuf::RepeatedField< ::google::protobuf::int32 >*
+Hardware::mutable_resources() {
+  return &resources_;
 }
 
 
