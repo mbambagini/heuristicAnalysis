@@ -5,8 +5,8 @@ SRC_DIR  = ./src
 INC_DIR  = ./inc
 OBJ_DIR	 = ./obj
 
-SRC_FILES := $(shell ls $(SRC_DIR)/*.cpp;)
-OBJ_FILES := ${SRC_FILES:$(SRC_DIR)/%.cpp=$(OBJ_DIR)/%.o}
+SRC_FILES := $(@shell ls $(SRC_DIR)/*.cpp;)
+OBJ_FILES := ${@SRC_FILES:$(SRC_DIR)/%.cpp=$(OBJ_DIR)/%.o}
 
 all: $(OBJ_DIR) $(OBJ_FILES)
 

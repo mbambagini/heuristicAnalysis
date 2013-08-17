@@ -1,6 +1,5 @@
 /*! \file hardware_viewer.cpp
- *  \brief print the core information on the standard output
- *
+ *  \brief print the hardware information on the standard output
  */
 
 #include <iostream>
