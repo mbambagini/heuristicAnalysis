@@ -4,6 +4,8 @@ misura con solo un core									Done (manca interpolazione)
 
 decidere su come approssimare le conf intermedie		Done: media pesata delle speed e processori attivi
 
+aggiornare hw.bin
+
 rivedere il generatore
 
 scrivere system model
