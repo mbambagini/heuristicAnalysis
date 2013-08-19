@@ -65,11 +65,12 @@ void protobuf_AssignDesc_problem_2eproto() {
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(Task));
   Software_descriptor_ = file->message_type(1);
-  static const int Software_offsets_[4] = {
+  static const int Software_offsets_[5] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Software, tasks_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Software, u_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Software, real_u_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Software, nofresources_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Software, alpha_),
   };
   Software_reflection_ =
     new ::google::protobuf::internal::GeneratedMessageReflection(
@@ -117,12 +118,13 @@ void protobuf_AssignDesc_problem_2eproto() {
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(ConsAtSpeed));
   Hardware_descriptor_ = file->message_type(4);
-  static const int Hardware_offsets_[5] = {
+  static const int Hardware_offsets_[6] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Hardware, nofclusters_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Hardware, cpc_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Hardware, cons_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Hardware, nofresources_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Hardware, resources_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Hardware, idle_),
   };
   Hardware_reflection_ =
     new ::google::protobuf::internal::GeneratedMessageReflection(
@@ -183,16 +185,17 @@ void protobuf_AddDesc_problem_2eproto() {
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
     "\n\rproblem.proto\022\007Problem\"Q\n\004Task\022\n\n\002id\030\001"
     " \002(\005\022\014\n\004wcet\030\002 \002(\005\022\r\n\005wcets\030\003 \003(\005\022\016\n\006per"
-    "iod\030\004 \002(\005\022\020\n\010deadline\030\005 \002(\005\"Y\n\010Software\022"
+    "iod\030\004 \002(\005\022\020\n\010deadline\030\005 \002(\005\"h\n\010Software\022"
     "\034\n\005tasks\030\001 \003(\0132\r.Problem.Task\022\t\n\001U\030\002 \002(\001"
-    "\022\016\n\006real_U\030\003 \002(\001\022\024\n\014nOfResources\030\004 \002(\005\">"
-    "\n\014Coefficients\022\n\n\002k0\030\001 \002(\001\022\n\n\002k1\030\002 \002(\001\022\n"
-    "\n\002k2\030\003 \002(\001\022\n\n\002k3\030\004 \002(\001\"C\n\013ConsAtSpeed\022\r\n"
-    "\005speed\030\001 \002(\001\022%\n\006coeffs\030\002 \002(\0132\025.Problem.C"
-    "oefficients\"y\n\010Hardware\022\023\n\013nOfClusters\030\001"
-    " \002(\005\022\013\n\003CpC\030\002 \002(\005\022\"\n\004cons\030\003 \003(\0132\024.Proble"
-    "m.ConsAtSpeed\022\024\n\014nOfResources\030\004 \002(\005\022\021\n\tr"
-    "esources\030\005 \003(\005", 454);
+    "\022\016\n\006real_U\030\003 \002(\001\022\024\n\014nOfResources\030\004 \002(\005\022\r"
+    "\n\005alpha\030\005 \002(\001\">\n\014Coefficients\022\n\n\002k0\030\001 \002("
+    "\001\022\n\n\002k1\030\002 \002(\001\022\n\n\002k2\030\003 \002(\001\022\n\n\002k3\030\004 \002(\001\"C\n"
+    "\013ConsAtSpeed\022\r\n\005speed\030\001 \002(\001\022%\n\006coeffs\030\002 "
+    "\002(\0132\025.Problem.Coefficients\"\207\001\n\010Hardware\022"
+    "\023\n\013nOfClusters\030\001 \002(\005\022\013\n\003CpC\030\002 \002(\005\022\"\n\004con"
+    "s\030\003 \003(\0132\024.Problem.ConsAtSpeed\022\024\n\014nOfReso"
+    "urces\030\004 \002(\005\022\021\n\tresources\030\005 \003(\005\022\014\n\004idle\030\006"
+    " \002(\001", 484);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "problem.proto", &protobuf_RegisterTypes);
   Task::default_instance_ = new Task();
@@ -599,6 +602,7 @@ const int Software::kTasksFieldNumber;
 const int Software::kUFieldNumber;
 const int Software::kRealUFieldNumber;
 const int Software::kNOfResourcesFieldNumber;
+const int Software::kAlphaFieldNumber;
 #endif  // !_MSC_VER
 
 Software::Software()
@@ -620,6 +624,7 @@ void Software::SharedCtor() {
   u_ = 0;
   real_u_ = 0;
   nofresources_ = 0;
+  alpha_ = 0;
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
 }
 
@@ -658,6 +663,7 @@ void Software::Clear() {
     u_ = 0;
     real_u_ = 0;
     nofresources_ = 0;
+    alpha_ = 0;
   }
   tasks_.Clear();
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
@@ -729,6 +735,22 @@ bool Software::MergePartialFromCodedStream(
         } else {
           goto handle_uninterpreted;
         }
+        if (input->ExpectTag(41)) goto parse_alpha;
+        break;
+      }
+
+      // required double alpha = 5;
+      case 5: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_FIXED64) {
+         parse_alpha:
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   double, ::google::protobuf::internal::WireFormatLite::TYPE_DOUBLE>(
+                 input, &alpha_)));
+          set_has_alpha();
+        } else {
+          goto handle_uninterpreted;
+        }
         if (input->ExpectAtEnd()) return true;
         break;
       }
@@ -772,6 +794,11 @@ void Software::SerializeWithCachedSizes(
     ::google::protobuf::internal::WireFormatLite::WriteInt32(4, this->nofresources(), output);
   }
 
+  // required double alpha = 5;
+  if (has_alpha()) {
+    ::google::protobuf::internal::WireFormatLite::WriteDouble(5, this->alpha(), output);
+  }
+
   if (!unknown_fields().empty()) {
     ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
         unknown_fields(), output);
@@ -802,6 +829,11 @@ void Software::SerializeWithCachedSizes(
     target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(4, this->nofresources(), target);
   }
 
+  // required double alpha = 5;
+  if (has_alpha()) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteDoubleToArray(5, this->alpha(), target);
+  }
+
   if (!unknown_fields().empty()) {
     target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
         unknown_fields(), target);
@@ -828,6 +860,11 @@ int Software::ByteSize() const {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::Int32Size(
           this->nofresources());
+    }
+
+    // required double alpha = 5;
+    if (has_alpha()) {
+      total_size += 1 + 8;
     }
 
   }
@@ -875,6 +912,9 @@ void Software::MergeFrom(const Software& from) {
     if (from.has_nofresources()) {
       set_nofresources(from.nofresources());
     }
+    if (from.has_alpha()) {
+      set_alpha(from.alpha());
+    }
   }
   mutable_unknown_fields()->MergeFrom(from.unknown_fields());
 }
@@ -892,7 +932,7 @@ void Software::CopyFrom(const Software& from) {
 }
 
 bool Software::IsInitialized() const {
-  if ((_has_bits_[0] & 0x0000000e) != 0x0000000e) return false;
+  if ((_has_bits_[0] & 0x0000001e) != 0x0000001e) return false;
 
   for (int i = 0; i < tasks_size(); i++) {
     if (!this->tasks(i).IsInitialized()) return false;
@@ -906,6 +946,7 @@ void Software::Swap(Software* other) {
     std::swap(u_, other->u_);
     std::swap(real_u_, other->real_u_);
     std::swap(nofresources_, other->nofresources_);
+    std::swap(alpha_, other->alpha_);
     std::swap(_has_bits_[0], other->_has_bits_[0]);
     _unknown_fields_.Swap(&other->_unknown_fields_);
     std::swap(_cached_size_, other->_cached_size_);
@@ -1505,6 +1546,7 @@ const int Hardware::kCpCFieldNumber;
 const int Hardware::kConsFieldNumber;
 const int Hardware::kNOfResourcesFieldNumber;
 const int Hardware::kResourcesFieldNumber;
+const int Hardware::kIdleFieldNumber;
 #endif  // !_MSC_VER
 
 Hardware::Hardware()
@@ -1526,6 +1568,7 @@ void Hardware::SharedCtor() {
   nofclusters_ = 0;
   cpc_ = 0;
   nofresources_ = 0;
+  idle_ = 0;
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
 }
 
@@ -1564,6 +1607,7 @@ void Hardware::Clear() {
     nofclusters_ = 0;
     cpc_ = 0;
     nofresources_ = 0;
+    idle_ = 0;
   }
   cons_.Clear();
   resources_.Clear();
@@ -1657,6 +1701,22 @@ bool Hardware::MergePartialFromCodedStream(
           goto handle_uninterpreted;
         }
         if (input->ExpectTag(40)) goto parse_resources;
+        if (input->ExpectTag(49)) goto parse_idle;
+        break;
+      }
+
+      // required double idle = 6;
+      case 6: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_FIXED64) {
+         parse_idle:
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   double, ::google::protobuf::internal::WireFormatLite::TYPE_DOUBLE>(
+                 input, &idle_)));
+          set_has_idle();
+        } else {
+          goto handle_uninterpreted;
+        }
         if (input->ExpectAtEnd()) return true;
         break;
       }
@@ -1706,6 +1766,11 @@ void Hardware::SerializeWithCachedSizes(
       5, this->resources(i), output);
   }
 
+  // required double idle = 6;
+  if (has_idle()) {
+    ::google::protobuf::internal::WireFormatLite::WriteDouble(6, this->idle(), output);
+  }
+
   if (!unknown_fields().empty()) {
     ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
         unknown_fields(), output);
@@ -1742,6 +1807,11 @@ void Hardware::SerializeWithCachedSizes(
       WriteInt32ToArray(5, this->resources(i), target);
   }
 
+  // required double idle = 6;
+  if (has_idle()) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteDoubleToArray(6, this->idle(), target);
+  }
+
   if (!unknown_fields().empty()) {
     target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
         unknown_fields(), target);
@@ -1772,6 +1842,11 @@ int Hardware::ByteSize() const {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::Int32Size(
           this->nofresources());
+    }
+
+    // required double idle = 6;
+    if (has_idle()) {
+      total_size += 1 + 8;
     }
 
   }
@@ -1830,6 +1905,9 @@ void Hardware::MergeFrom(const Hardware& from) {
     if (from.has_nofresources()) {
       set_nofresources(from.nofresources());
     }
+    if (from.has_idle()) {
+      set_idle(from.idle());
+    }
   }
   mutable_unknown_fields()->MergeFrom(from.unknown_fields());
 }
@@ -1847,7 +1925,7 @@ void Hardware::CopyFrom(const Hardware& from) {
 }
 
 bool Hardware::IsInitialized() const {
-  if ((_has_bits_[0] & 0x0000000b) != 0x0000000b) return false;
+  if ((_has_bits_[0] & 0x0000002b) != 0x0000002b) return false;
 
   for (int i = 0; i < cons_size(); i++) {
     if (!this->cons(i).IsInitialized()) return false;
@@ -1862,6 +1940,7 @@ void Hardware::Swap(Hardware* other) {
     cons_.Swap(&other->cons_);
     std::swap(nofresources_, other->nofresources_);
     resources_.Swap(&other->resources_);
+    std::swap(idle_, other->idle_);
     std::swap(_has_bits_[0], other->_has_bits_[0]);
     _unknown_fields_.Swap(&other->_unknown_fields_);
     std::swap(_cached_size_, other->_cached_size_);

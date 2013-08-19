@@ -11,43 +11,58 @@ message Task
 	required int32 deadline = 3;
 	//worst-case execution time
 	required int32 wcet = 4;
+	//assigned core
+	required int32 core = 5;
+};
+
+message Core
+{
+	//core id
+	required int32 id = 1;
+	//core utilization
+	required float u = 2;
 };
 
 
-message Result
-{
-	//time spent in active mode
-	required float activeTime = 1;
-	//time spent in sleep mode
-	required float sleepTime = 2;
-	//time spent switching mode
-	required float switchingTime = 3;
-	//time spent in idle
-	required float idleTime = 4;
-	//number of preemptions
-	required int32 nOfPreemptions = 5;
-	//number of idle times
-	required int32 nOfInvocations = 6;
-	//number of switchings into sleep mode
-	required int32 nOfSleeps = 7;
-	//true if no task has been allcoated on it (always off)
-	required bool off = 8;
-}
+//message Result
+//{
+//	//time spent in active mode
+//	required float activeTime = 1;
+//	//time spent in sleep mode
+//	required float sleepTime = 2;
+//	//time spent switching mode
+//	required float switchingTime = 3;
+//	//time spent in idle
+//	required float idleTime = 4;
+//	//number of preemptions
+//	required int32 nOfPreemptions = 5;
+//	//number of idle times
+//	required int32 nOfInvocations = 6;
+//	//number of switchings into sleep mode
+//	required int32 nOfSleeps = 7;
+//	//true if no task has been allcoated on it (always off)
+//	required bool off = 8;
+//}
 
 
 message Simulation
 {
 	//task set
 	repeated Task tasks = 1;
+
+	repeated Core cores = 2;
 	//utilization on the core in question
-	required float utilization = 2;
+//	required float utilization = 2;
 	//core in question
-	required int32 core = 3;
+//	required int32 core = 3;
 	//core's break-even time
-	required int32 bet = 4;
+//	required int32 bet = 4;
 	//simulation results
-	optional Result res = 5;
+//	optional Result res = 5;
 	//the task allocation is feasible?
-	required bool feasible = 6;
+	required bool feasible = 3;
+
+	required int32 csa = 4;
+	required int32 tsa = 5;
 };
 

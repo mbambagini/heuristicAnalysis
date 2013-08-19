@@ -5,8 +5,8 @@ SRC_DIR  = ./src
 INC_DIR  = ./inc
 OBJ_DIR	 = ./obj
 
-SRC_FILES := $(@shell ls $(SRC_DIR)/*.cpp;)
-OBJ_FILES := ${@SRC_FILES:$(SRC_DIR)/%.cpp=$(OBJ_DIR)/%.o}
+SRC_FILES := $(shell ls $(SRC_DIR)/*.cpp;)
+OBJ_FILES := ${SRC_FILES:$(SRC_DIR)/%.cpp=$(OBJ_DIR)/%.o}
 
 all: $(OBJ_DIR) $(OBJ_FILES)
 
@@ -23,10 +23,10 @@ proto:
 	@protoc --cpp_out=. problem.proto
 	@mv problem.pb.h inc/
 	@mv problem.pb.cc src/problem.pb.cpp
-#	@protoc --cpp_out=. simulations.proto
-#	@mv simulations.pb.h inc/
-#	@mv simulations.pb.cc src/simulations.pb.cpp
-#	@protoc --cpp_out=. results.proto
-#	@mv results.pb.h inc/
-#	@mv results.pb.cc src/results.pb.cpp
+	@protoc --cpp_out=. simulations.proto
+	@mv simulations.pb.h inc/
+	@mv simulations.pb.cc src/simulations.pb.cpp
+	@protoc --cpp_out=. results.proto
+	@mv results.pb.h inc/
+	@mv results.pb.cc src/results.pb.cpp
 

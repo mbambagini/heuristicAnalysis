@@ -17,6 +17,8 @@ message Software {
 	required double U = 2;				//utilization (hardware independent)
 	required double real_U = 3;			//real utilization
 	required int32 nOfResources = 4;	//number of resources
+	required double alpha = 5;			//WCET percentage that does not scale
+										//with the speed
 };
 
 
@@ -44,5 +46,6 @@ message Hardware {
 	required int32 nOfResources = 4;	//number of resources 
 	repeated int32 resources = 5;		//computational power for each resource
 										//of each CPU at the maximum speed
+	required double idle = 6;			//power consumption in idle
 };
 

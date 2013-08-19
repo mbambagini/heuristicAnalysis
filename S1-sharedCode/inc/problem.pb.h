@@ -253,6 +253,13 @@ class Software : public ::google::protobuf::Message {
   inline ::google::protobuf::int32 nofresources() const;
   inline void set_nofresources(::google::protobuf::int32 value);
 
+  // required double alpha = 5;
+  inline bool has_alpha() const;
+  inline void clear_alpha();
+  static const int kAlphaFieldNumber = 5;
+  inline double alpha() const;
+  inline void set_alpha(double value);
+
   // @@protoc_insertion_point(class_scope:Problem.Software)
  private:
   inline void set_has_u();
@@ -261,16 +268,19 @@ class Software : public ::google::protobuf::Message {
   inline void clear_has_real_u();
   inline void set_has_nofresources();
   inline void clear_has_nofresources();
+  inline void set_has_alpha();
+  inline void clear_has_alpha();
 
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
 
   ::google::protobuf::RepeatedPtrField< ::Problem::Task > tasks_;
   double u_;
   double real_u_;
+  double alpha_;
   ::google::protobuf::int32 nofresources_;
 
   mutable int _cached_size_;
-  ::google::protobuf::uint32 _has_bits_[(4 + 31) / 32];
+  ::google::protobuf::uint32 _has_bits_[(5 + 31) / 32];
 
   friend void  protobuf_AddDesc_problem_2eproto();
   friend void protobuf_AssignDesc_problem_2eproto();
@@ -586,6 +596,13 @@ class Hardware : public ::google::protobuf::Message {
   inline ::google::protobuf::RepeatedField< ::google::protobuf::int32 >*
       mutable_resources();
 
+  // required double idle = 6;
+  inline bool has_idle() const;
+  inline void clear_idle();
+  static const int kIdleFieldNumber = 6;
+  inline double idle() const;
+  inline void set_idle(double value);
+
   // @@protoc_insertion_point(class_scope:Problem.Hardware)
  private:
   inline void set_has_nofclusters();
@@ -594,6 +611,8 @@ class Hardware : public ::google::protobuf::Message {
   inline void clear_has_cpc();
   inline void set_has_nofresources();
   inline void clear_has_nofresources();
+  inline void set_has_idle();
+  inline void clear_has_idle();
 
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
 
@@ -601,10 +620,11 @@ class Hardware : public ::google::protobuf::Message {
   ::google::protobuf::int32 cpc_;
   ::google::protobuf::RepeatedPtrField< ::Problem::ConsAtSpeed > cons_;
   ::google::protobuf::RepeatedField< ::google::protobuf::int32 > resources_;
+  double idle_;
   ::google::protobuf::int32 nofresources_;
 
   mutable int _cached_size_;
-  ::google::protobuf::uint32 _has_bits_[(5 + 31) / 32];
+  ::google::protobuf::uint32 _has_bits_[(6 + 31) / 32];
 
   friend void  protobuf_AddDesc_problem_2eproto();
   friend void protobuf_AssignDesc_problem_2eproto();
@@ -826,6 +846,28 @@ inline ::google::protobuf::int32 Software::nofresources() const {
 inline void Software::set_nofresources(::google::protobuf::int32 value) {
   set_has_nofresources();
   nofresources_ = value;
+}
+
+// required double alpha = 5;
+inline bool Software::has_alpha() const {
+  return (_has_bits_[0] & 0x00000010u) != 0;
+}
+inline void Software::set_has_alpha() {
+  _has_bits_[0] |= 0x00000010u;
+}
+inline void Software::clear_has_alpha() {
+  _has_bits_[0] &= ~0x00000010u;
+}
+inline void Software::clear_alpha() {
+  alpha_ = 0;
+  clear_has_alpha();
+}
+inline double Software::alpha() const {
+  return alpha_;
+}
+inline void Software::set_alpha(double value) {
+  set_has_alpha();
+  alpha_ = value;
 }
 
 // -------------------------------------------------------------------
@@ -1102,6 +1144,28 @@ Hardware::resources() const {
 inline ::google::protobuf::RepeatedField< ::google::protobuf::int32 >*
 Hardware::mutable_resources() {
   return &resources_;
+}
+
+// required double idle = 6;
+inline bool Hardware::has_idle() const {
+  return (_has_bits_[0] & 0x00000020u) != 0;
+}
+inline void Hardware::set_has_idle() {
+  _has_bits_[0] |= 0x00000020u;
+}
+inline void Hardware::clear_has_idle() {
+  _has_bits_[0] &= ~0x00000020u;
+}
+inline void Hardware::clear_idle() {
+  idle_ = 0;
+  clear_has_idle();
+}
+inline double Hardware::idle() const {
+  return idle_;
+}
+inline void Hardware::set_idle(double value) {
+  set_has_idle();
+  idle_ = value;
 }
 
 

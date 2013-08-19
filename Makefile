@@ -1,4 +1,4 @@
-MODULES := sharedCode generator algorithm simulator collector printer
+MODULES := S1-sharedCode S2-generator S3-algorithm
 
 all:
 	@$(foreach MODULE,$(MODULES), cd $(MODULE); make; cd ../;)
