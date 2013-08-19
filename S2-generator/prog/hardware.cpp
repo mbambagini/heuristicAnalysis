@@ -62,6 +62,11 @@ int main (int argc, char* argv[])
 	cin>>CPUperCluster;
 	hw.set_cpc(CPUperCluster);
 
+	double idle;
+	cout<<"Add power consumption in idle: ";
+	cin>>idle;
+	hw.set_idle(idle);
+
 	add_speed(hw);
 
 	//output - serialization

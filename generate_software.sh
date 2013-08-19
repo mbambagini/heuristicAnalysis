@@ -5,6 +5,8 @@
 #Period
 maxBound=500
 minBound=100
+#Alpha
+alpha=0.0
 #Number of resources
 numRes=2
 #Number of tasks
@@ -61,6 +63,7 @@ for n in `seq $minN $stepN $maxN`; do
 			./generator/software	--binaryFile=$directory/sw.bin \
 									--maxBound $maxBound \
 									--minBound $minBound \
+									--alpha $alpha
 									--numRes $numRes --n $n --u $u \
 									--seed $RANDOM
 			./generator/software_viewer	\

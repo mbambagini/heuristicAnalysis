@@ -8,8 +8,8 @@ PRG_SW_V = software_viewer
 SRC_DIR  = ./src
 INC_DIR  = ./inc
 OBJ_DIR	 = obj
-SHARED_INC_DIR = ../sharedCode/inc
-SHARED_OBJ_DIR = ../sharedCode/obj
+SHARED_INC_DIR = ../S1-sharedCode/inc
+SHARED_OBJ_DIR = ../S1-sharedCode/obj
 
 SRC_FILES := $(shell ls $(SRC_DIR)/*.cpp;)
 OBJ_FILES := ${SRC_FILES:$(SRC_DIR)/%.cpp=$(OBJ_DIR)/%.o}

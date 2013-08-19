@@ -42,6 +42,7 @@ int main (int argc, char* argv[])
 		fatal_error("failed to parse the input file");
 
 	cout<<setw(20)<<"#Resources:"<<setw(15)<<sw.nofresources()<<endl;
+	cout<<setw(20)<<"Alpha:"<<setw(15)<<sw.alpha()<<endl;
 	cout<<setw(20)<<"Utilization:"<<setw(15)<<sw.u()<<endl;
 	cout<<setw(20)<<"Real utilization:"<<setw(15)<<sw.real_u()<<endl<<endl;
 
@@ -64,7 +65,6 @@ int main (int argc, char* argv[])
 			cout<<setw(10)<<t.wcets(k);
 		cout<<endl;
 	}
-	cout<<endl;
 
 	google::protobuf::ShutdownProtobufLibrary();
 

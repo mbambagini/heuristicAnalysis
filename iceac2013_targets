@@ -1,21 +1,15 @@
-TASK													STATE
-
-misura con solo un core									Done (manca interpolazione)
-
-decidere su come approssimare le conf intermedie		Done: media pesata delle speed e processori attivi
-
-aggiornare hw.bin
-
-rivedere il generatore
-
-scrivere system model
-
-controllare il partizionatore
-
-scrivere introduzione
+TASK													STATE		NOTE
+misura con solo un core									Done
+decidere su come approssimare le conf intermedie		Done		media pesata delle speed e processori attivi
+aggiornare hw.bin										Done
+rivedere il generatore									Done
+scrivere introduzione									Done
+scrivere system model									Done
+controllare il partizionatore							Done
 
 scrivere il sw che calcola i consumi
 
-scrivere il sw che raccoglie e stampa i dati
+scrivere il sw che stampa i dati
 
 testbed
+

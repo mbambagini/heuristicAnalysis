@@ -2,12 +2,12 @@ CC		 = g++
 CFLAGS	 = -Wall -I'/usr/include'
 LDFLAGS  = -lm -lgflags -L'/usr/local/lib' -lprotobuf
 OBJ_DIR	 = obj
-SHARED_INC_DIR = ../sharedCode/inc
-SHARED_OBJ_DIR = ../sharedCode/obj
+SHARED_INC_DIR = ../S1-sharedCode/inc
+SHARED_OBJ_DIR = ../S1-sharedCode/obj
 
 SHARED_OBJ_FILES := $(shell ls $(SHARED_OBJ_DIR)/*.o 2> /dev/null;)
 
-all: collector viewer
+all: collector
 
 collector:
 	@$(CC) -I$(SHARED_INC_DIR) $(CFLAGS) $(LDFLAGS) collector.cpp  -o collector $(SHARED_OBJ_FILES)

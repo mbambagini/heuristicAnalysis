@@ -22,11 +22,13 @@ DEFINE_string(binaryFile, "", "Binary file");
 DEFINE_int32(maxBound, 1000, "Maximum bound");
 DEFINE_int32(minBound, 100, "Minimum bound");
 
-DEFINE_int32(numRes, 2, "Number of resources");
+DEFINE_int32(numRes, 1, "Number of resources");
 
 DEFINE_int32(n, 10, "task number");
 
 DEFINE_double(u, 0.9, "utilization");
+
+DEFINE_double(alpha, 1.0, "alpha parameter");
 
 DEFINE_int32(seed, 0, "Seed");
 #define MAX_SEED 32767.
@@ -64,6 +66,7 @@ int main (int argc, char* argv[])
 	} while(real_u>FLAGS_u || real_u<(FLAGS_u*0.9));
 
 	sw.set_u(FLAGS_u);
+	sw.set_alpha(FLAGS_alpha);
 	sw.set_real_u(real_u);
 	for (int j=0; j<FLAGS_n; j++) {
 		Problem::Task *t = sw.add_tasks();
