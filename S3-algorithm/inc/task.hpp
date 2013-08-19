@@ -10,7 +10,8 @@ class Task
 
 	int D;
 	int T;
-	std::vector<int> C;
+//	std::vector<int> C;
+	int C;
 
 public:
 
@@ -21,9 +22,13 @@ public:
 	/*!
 	 * Number of cores
 	 */
-	void setNOfCores (int n) {
-		C.resize(n);
+//	void setNOfCores (int n) {
+//		C.resize(n);
+//	}
+	void setC (int C) {
+		this->C = C;
 	}
+
 
 	/*!
 	 * Deadline
@@ -42,9 +47,9 @@ public:
 	/*!
 	 * Computation time on the specified core
 	 */
-	void setC (int C, int core) {
-		this->C[core] = C;
-	}
+//	void setC (int C, int core) {
+//		this->C[core] = C;
+//	}
 
 
 
@@ -69,8 +74,12 @@ public:
 	/*!
 	 * Computation time on the specified core
 	 */
-	int getC (int core) const {
-		return C[core];
+//	int getC (int core) const {
+//		return C[core];
+//	}
+
+	int getC () const {
+		return C;
 	}
 
 };

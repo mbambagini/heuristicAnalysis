@@ -7,42 +7,50 @@
 #include <math.h>
 
 
-
 using namespace std;
-
 
 
 bool Heuristic::read (const Problem::Software& s, const Problem::Hardware& h)
 {
 	tasks.resize(s.tasks_size());
-	cores.resize(h.processors_size());
+	cores.resize(h.nofclusters()*h.cpc());
+
+	int res = 0;
+	for (int i=0; i<h.nofresources(); i++)
+		res += h.resources(i);
+	if (res<=0)
+		return false;
 
 	//software
 	for (int i=0; i<s.tasks_size(); i++) {
 		const Problem::Task t = s.tasks(i);
 		tasks[i].setD(t.deadline());
 		tasks[i].setT(t.period());
-		tasks[i].setNOfCores(h.processors_size());
-		for (int j=0; j<h.processors_size(); j++) {
-			const Problem::ProcessorType& type = h.types(h.processors(j));
-			double c = 0.0;
-			for (int k=0; k<t.wcets_size(); k++)
-				c += (double) (t.wcets(k)) / type.speed(k);
-			tasks[i].setC(trunc(c), j);
-		}
+		int C = 0;
+		for (int j=0; j<h.nofresources(); j++)
+			C += t.wcets(j);
+		tasks[i].setC(trunc((double)C/res));
+//		tasks[i].setNOfCores(h.processors_size());
+//		for (int j=0; j<h.processors_size(); j++) {
+//			const Problem::ProcessorType& type = h.types(h.processors(j));
+//			double c = 0.0;
+//			for (int k=0; k<t.wcets_size(); k++)
+//				c += (double) (t.wcets(k)) / type.speed(k);
+//			tasks[i].setC(trunc(c), j);
+//		}
 	}
 
 	//hardware
-	for (int i=0; i<h.processors_size(); i++) {
-		const Problem::ProcessorType& t = h.types(h.processors(i));
-		cores[i].setIdle(t.pidle());
-		cores[i].setSleep(t.psleep());
-		cores[i].setActive(t.pactive());
-		cores[i].setSwitch(t.pswitching());
-		cores[i].setBET(t.bet());
-		cores[i].setNOfResources(t.speed_size());
-		for (int j=0; j<t.speed_size(); j++)
-			cores[i].setSpeed(j, t.speed(j));
+	for (unsigned int i=0; i<cores.size(); i++) {
+//		const Problem::ProcessorType& t = h.types(h.processors(i));
+//		cores[i].setIdle(t.pidle());
+//		cores[i].setSleep(t.psleep());
+//		cores[i].setActive(t.pactive());
+//		cores[i].setSwitch(t.pswitching());
+//		cores[i].setBET(t.bet());
+		cores[i].setNOfResources(h.nofresources());
+		for (int j=0; j<h.nofresources(); j++)
+			cores[i].setResPerSec(j, h.resources(j));
 	}
 
 	return true;
@@ -72,7 +80,7 @@ int Heuristic::run (std::vector<int>& a, std::vector<double>& u)
 												 it!=sorted_cores.end(); it++) {
 			int c = *it;
 			int t = ordered_tasks_per_core[c].front();
-			double u_t = (double)(tasks[t].getC(c))/tasks[t].getT();
+			double u_t = (double)(tasks[t].getC())/tasks[t].getT();
 			if ((u[c]+u_t)>1.0)
 				continue;
 			u[c] += u_t;
@@ -115,7 +123,7 @@ void Heuristic::sortTasksPerCore (std::vector<std::list<int> >& tl)
 {
 	tl.resize(cores.size());
 	for (unsigned int i=0; i<cores.size(); i++) {
-		taskSorter->setCore(i);
+//		taskSorter->setCore(i);
 		taskSorter->setTaskSet(&tasks);
 		for (unsigned int j=0; j<tasks.size(); j++)
 			tl[i].push_front(j);

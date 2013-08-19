@@ -12,9 +12,8 @@ class SerializerProtobuf: public Serializer
 {
 public:
 
-	bool serialize (const std::string& file, int core, bool feas);
+	bool serialize (const std::string& file, bool feas,	int csa, int tsa);
 };
-
 
 
 #endif //__SERIALIZER_PROTOBUF_HPP__

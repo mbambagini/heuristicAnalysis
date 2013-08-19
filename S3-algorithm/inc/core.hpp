@@ -7,13 +7,15 @@
 
 class Core
 {
+/*
 	double Pidle;
 	double Psleep;
 	double Pactive;
 	double Pswitching;
 	int bet;
+*/
 
-	std::vector<int> speeds;
+	std::vector<int> resourcesPerSecond;
 
 public:
 
@@ -22,41 +24,41 @@ public:
  ******************************************************************************/
 
 	/*! Power consumption during idle */
-	void setIdle (double p) {
-		Pidle = p;
-	}
+//	void setIdle (double p) {
+//		Pidle = p;
+//	}
 
 	/*! Power consumption during sleep */
-	void setSleep (double p) {
-		Psleep = p;
-	}
+//	void setSleep (double p) {
+//		Psleep = p;
+//	}
 
 	/*! Power consumption during active state */
-	void setActive (double p) {
-		Pactive = p;
-	}
+//	void setActive (double p) {
+//		Pactive = p;
+//	}
 
 	/*! Power consumption during switching mode */
-	void setSwitch (double p) {
-		Pswitching = p;
-	}
+//	void setSwitch (double p) {
+//		Pswitching = p;
+//	}
 
 	/*! Break-even time */
-	void setBET (int bet) {
-		this->bet = bet;
-	}
+//	void setBET (int bet) {
+//		this->bet = bet;
+//	}
 
 	/*! Number of computational elements */
 	void setNOfResources (int n) {
-		speeds.resize(n);
+		resourcesPerSecond.resize(n);
 	}
 
 	/*!
 	 * in this context, speed means the amount of computational units of the 
 	 * specified resource that the core can execute for each time unit
 	 */
-	void setSpeed (int resource, int speed) {
-		speeds[resource] = speed;
+	void setResPerSec (int resource, int numPerSec) {
+		resourcesPerSecond[resource] = numPerSec;
 	}
 
 
@@ -66,48 +68,48 @@ public:
 
 	/*! Number of computational elements */
 	int getNOfResources () const {
-		return speeds.size();
+		return resourcesPerSecond.size();
 	}
 
 	/*!
-	 * \see setSpeed
+	 * \see setResPerSec
 	 */
-	int getSpeed (int resource) const {
-		return speeds[resource];
+	int getResPerSec (int resource) const {
+		return resourcesPerSecond[resource];
 	}
 
 	/*! Parameter representing the computational power */
-	int getSpeedSum() const {
+	int getResPerSec() const {
 		int sum = 0;
-		for (unsigned int i=0; i<speeds.size(); i++)
-			sum += speeds[i];
+		for (unsigned int i=0; i<resourcesPerSecond.size(); i++)
+			sum += resourcesPerSecond[i];
 		return sum;
 	}
 
 	/*! Power consumption during idle */
-	double getIdle () const {
-		return Pidle;
-	}
+//	double getIdle () const {
+//		return Pidle;
+//	}
 
 	/*! Power consumption during sleep */
-	double getSleep () const {
-		return Psleep;
-	}
+//	double getSleep () const {
+//		return Psleep;
+//	}
 
 	/*! Power consumption during active state */
-	double getActive () const {
-		return Pactive;
-	}
+//	double getActive () const {
+//		return Pactive;
+//	}
 
 	/*! Power consumption during switching mode */
-	double getSwitch () const {
-		return Pswitching;
-	}
+//	double getSwitch () const {
+//		return Pswitching;
+//	}
 
 	/*! Break-even time */
-	int getBET () const {
-		return bet;
-	}
+//	int getBET () const {
+//		return bet;
+//	}
 
 };
 

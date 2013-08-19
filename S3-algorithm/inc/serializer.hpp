@@ -24,10 +24,10 @@ class Serializer
 
 protected:
 
-	const Problem::Software* getSoftware () {
+	const Problem::Software* getSw () {
 		return sw;
 	}
-	const Problem::Hardware* getHardware () {
+	const Problem::Hardware* getHw () {
 		return hw;
 	}
 
@@ -58,7 +58,8 @@ public:
 		this->a = a;
 	}
 
-	virtual bool serialize (const std::string& file, int core, bool feas) = 0;
+	virtual bool serialize (const std::string& file, bool feas, int csa,
+																int tsa) = 0;
 
 };
 

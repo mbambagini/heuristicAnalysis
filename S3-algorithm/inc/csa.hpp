@@ -66,110 +66,110 @@ public:
 /*!
  * Sort cores in ascending order with respect to power consumption in active mode
  */
-class PowerAscCSA: public CSA
-{
-public:
-	virtual bool operator()(const int a, const int b) const {
-		return ((*c)[a].getActive())<((*c)[b].getActive());
-	}
-	void sort (std::vector<int>& cores) {
-		std::sort(cores.begin(), cores.end(), *this);
-	}
-};
+//class PowerAscCSA: public CSA
+//{
+//public:
+//	virtual bool operator()(const int a, const int b) const {
+//		return ((*c)[a].getActive())<((*c)[b].getActive());
+//	}
+//	void sort (std::vector<int>& cores) {
+//		std::sort(cores.begin(), cores.end(), *this);
+//	}
+//};
 
 
 /*!
  * Sort cores in descending order with respect to power consumption in active
  * mode
  */
-class PowerDescCSA: public CSA
-{
-public:
-	virtual bool operator()(const int a, const int b) const {
-		return ((*c)[a].getActive())>((*c)[b].getActive());
-	}
-	void sort (std::vector<int>& cores) {
-		std::sort(cores.begin(), cores.end(), *this);
-	}
-};
+//class PowerDescCSA: public CSA
+//{
+//public:
+//	virtual bool operator()(const int a, const int b) const {
+//		return ((*c)[a].getActive())>((*c)[b].getActive());
+//	}
+//	void sort (std::vector<int>& cores) {
+//		std::sort(cores.begin(), cores.end(), *this);
+//	}
+//};
 
 
 /*!
  * Sort cores in ascending order with respect to the power consumption in active
  * mode divided by the computational power
  */
-class CpWAscCSA: public CSA
-{
-public:
-	virtual bool operator()(const int a, const int b) const {
-		double val_a = 0.0;
-		double val_b = 0.0;
-		for (int i=0; i<(*c)[a].getNOfResources(); i++) {
-			val_a += (*c)[a].getSpeed(i);
-			val_b += (*c)[b].getSpeed(i);
-		}
-		val_a /= (*c)[a].getActive();
-		val_b /= (*c)[b].getActive();
-		return val_a<val_b;
-	}
-	void sort (std::vector<int>& cores) {
-		std::sort(cores.begin(), cores.end(), *this);
-	}
-};
+//class CpWAscCSA: public CSA
+//{
+//public:
+//	virtual bool operator()(const int a, const int b) const {
+//		double val_a = 0.0;
+//		double val_b = 0.0;
+//		for (int i=0; i<(*c)[a].getNOfResources(); i++) {
+//			val_a += (*c)[a].getSpeed(i);
+//			val_b += (*c)[b].getSpeed(i);
+//		}
+//		val_a /= (*c)[a].getActive();
+//		val_b /= (*c)[b].getActive();
+//		return val_a<val_b;
+//	}
+//	void sort (std::vector<int>& cores) {
+//		std::sort(cores.begin(), cores.end(), *this);
+//	}
+//};
 
 
 /*!
  * Sort cores in descending order with respect to the power consumption in 
  * active mode divided by the computational power
  */
-class CpWDecCSA: public CSA
-{
-public:
-	virtual bool operator()(const int a, const int b) const {
-		double val_a = 0.0;
-		double val_b = 0.0;
-		for (int i=0; i<(*c)[a].getNOfResources(); i++) {
-			val_a += (*c)[a].getSpeed(i);
-			val_b += (*c)[b].getSpeed(i);
-		}
-		val_a /= (*c)[a].getActive();
-		val_b /= (*c)[b].getActive();
-		return val_a>val_b;
-	}
-	void sort (std::vector<int>& cores) {
-		std::sort(cores.begin(), cores.end(), *this);
-	}
-};
+//class CpWDecCSA: public CSA
+//{
+//public:
+//	virtual bool operator()(const int a, const int b) const {
+//		double val_a = 0.0;
+//		double val_b = 0.0;
+//		for (int i=0; i<(*c)[a].getNOfResources(); i++) {
+//			val_a += (*c)[a].getSpeed(i);
+//			val_b += (*c)[b].getSpeed(i);
+//		}
+//		val_a /= (*c)[a].getActive();
+//		val_b /= (*c)[b].getActive();
+//		return val_a>val_b;
+//	}
+//	void sort (std::vector<int>& cores) {
+//		std::sort(cores.begin(), cores.end(), *this);
+//	}
+//};
 
 
 /*!
  * Sort cores in ascending order with respect to the computational power
  */
-class ComputationPowerFirstFitAscCSA: public CSA
-{
-public:
-	virtual bool operator()(const int a, const int b) const {
-		return (*c)[a].getSpeedSum()<(*c)[b].getSpeedSum();
-	}
-	void sort (std::vector<int>& cores) {
-		std::sort(cores.begin(), cores.end(), *this);
-	}
-};
+//class ComputationPowerFirstFitAscCSA: public CSA
+//{
+//public:
+//	virtual bool operator()(const int a, const int b) const {
+//		return (*c)[a].getSpeedSum()<(*c)[b].getSpeedSum();
+//	}
+//	void sort (std::vector<int>& cores) {
+//		std::sort(cores.begin(), cores.end(), *this);
+//	}
+//};
 
 
 /*!
  * Sort cores in descending order with respect to the computational power
  */
-class ComputationPowerFirstFitDescCSA: public CSA
-{
-public:
-	virtual bool operator()(const int a, const int b) const {
-		return (*c)[a].getSpeedSum()>(*c)[b].getSpeedSum();
-	}
-	void sort (std::vector<int>& cores) {
-		std::sort(cores.begin(), cores.end(), *this);
-	}
-};
+//class ComputationPowerFirstFitDescCSA: public CSA
+//{
+//public:
+//	virtual bool operator()(const int a, const int b) const {
+//		return (*c)[a].getSpeedSum()>(*c)[b].getSpeedSum();
+//	}
+//	void sort (std::vector<int>& cores) {
+//		std::sort(cores.begin(), cores.end(), *this);
+//	}
+//};
 
 
 /*!
@@ -181,7 +181,8 @@ class UtilizationWorstFitCSA: public CSA
 public:
 
 	virtual bool operator()(const int a, const int b) const {
-		if (u[a]>u[b] ||(u[a]==u[b] && (*c)[a].getActive()<(*c)[b].getActive()))
+//		if (u[a]>u[b] ||(u[a]==u[b] && (*c)[a].getActive()<(*c)[b].getActive()))
+		if (u[a]>u[b])
 			return true;
 		return false;
 	}
@@ -200,7 +201,8 @@ class UtilizationBestFitCSA: public CSA
 public:
 
 	virtual bool operator()(const int a, const int b) const {
-		if (u[a]<u[b] ||(u[a]==u[b] && (*c)[a].getActive()<(*c)[b].getActive()))
+//		if (u[a]<u[b] ||(u[a]==u[b] && (*c)[a].getActive()<(*c)[b].getActive()))
+		if (u[a]<u[b])
 			return true;
 		return false;
 	}
@@ -214,46 +216,46 @@ public:
  * Like UtilizationWorstFitCSA, but the utilization is multiplied for the 
  * computational power
  */
-class UtilizationStarWorstFitCSA: public CSA
-{
-public:
+//class UtilizationStarWorstFitCSA: public CSA
+//{
+//public:
 
-	virtual bool operator()(const int a, const int b) const {
-		const Core& c_a = (*c)[a];
-		const Core& c_b = (*c)[b];
-		double val_a = u[a]*c_a.getSpeedSum();
-		double val_b = u[b]*c_b.getSpeedSum();
-		if (val_a>val_b || (val_a==val_b && c_a.getActive()<c_b.getActive()))
-			return true;
-		return false;
-	}
-	void sort (std::vector<int>& cores) {
-		std::sort(cores.begin(), cores.end(), *this);
-	}
-};
+//	virtual bool operator()(const int a, const int b) const {
+//		const Core& c_a = (*c)[a];
+//		const Core& c_b = (*c)[b];
+//		double val_a = u[a]*c_a.getSpeedSum();
+//		double val_b = u[b]*c_b.getSpeedSum();
+//		if (val_a>val_b || (val_a==val_b && c_a.getActive()<c_b.getActive()))
+//			return true;
+//		return false;
+//	}
+//	void sort (std::vector<int>& cores) {
+//		std::sort(cores.begin(), cores.end(), *this);
+//	}
+//};
 
 
 /*!
  * Like UtilizationBestFitCSA, but the utilization is multiplied for the 
  * computational power
  */
-class UtilizationStarBestFitCSA: public CSA
-{
-public:
+//class UtilizationStarBestFitCSA: public CSA
+//{
+//public:
 
-	virtual bool operator()(const int a, const int b) const {
-		const Core& c_a = (*c)[a];
-		const Core& c_b = (*c)[b];
-		double val_a = u[a]*c_a.getSpeedSum();
-		double val_b = u[b]*c_b.getSpeedSum();
-		if (val_a<val_b || (val_a==val_b && c_a.getActive()<c_b.getActive()))
-			return true;
-		return false;
-	}
-	void sort (std::vector<int>& cores) {
-		std::sort(cores.begin(), cores.end(), *this);
-	}
-};
+//	virtual bool operator()(const int a, const int b) const {
+//		const Core& c_a = (*c)[a];
+//		const Core& c_b = (*c)[b];
+//		double val_a = u[a]*c_a.getSpeedSum();
+//		double val_b = u[b]*c_b.getSpeedSum();
+//		if (val_a<val_b || (val_a==val_b && c_a.getActive()<c_b.getActive()))
+//			return true;
+//		return false;
+//	}
+//	void sort (std::vector<int>& cores) {
+//		std::sort(cores.begin(), cores.end(), *this);
+//	}
+//};
 
 
 #endif //__ALGORITHM_HPP__
