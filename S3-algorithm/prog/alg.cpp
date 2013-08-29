@@ -57,14 +57,15 @@ int main (int argc, char* argv[])
 		fatal_error("Number of resources mismatch");
 
 	TSA* tsa;
-	switch (FLAGS_TSA) {
-		case 0: tsa = new UtilizationAscTSA(); break;
-		case 1: tsa = new UtilizationDescTSA(); break;
-//		case 2: tsa = new SlackAscTSA(); break;
-//		case 3: tsa = new SlackDescTSA(); break;
-		default:
-			fatal_error("Invalid TSA");
-	}
+//	switch (FLAGS_TSA) {
+//		case 0: tsa = new UtilizationAscTSA(); break;
+//		case 1: tsa = new UtilizationDescTSA(); break;
+////		case 2: tsa = new SlackAscTSA(); break;
+////		case 3: tsa = new SlackDescTSA(); break;
+//		default:
+//			fatal_error("Invalid TSA");
+//	}
+	tsa = new UtilizationDescTSA();
 	CSA* csa;
 	switch (FLAGS_CSA) {
 //		case 0: csa = new PowerAscCSA(); break;
@@ -90,8 +91,8 @@ int main (int argc, char* argv[])
 	 * Execution
 	 */
 	bool feasible = alg.run(a, u);
-	if (!feasible)
-		cout<<"Not feasible"<<endl;
+//	if (!feasible)
+//		cout<<"Not feasible"<<endl;
 	SerializerProtobuf ser;
 	ser.setHardware(&h);
 	ser.setSoftware(&sw);
