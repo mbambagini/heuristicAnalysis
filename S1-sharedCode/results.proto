@@ -11,12 +11,12 @@ message Consumption {
 message Execution {
 	required int32 TSA = 1;					//
 	required int32 CSA = 2;					//
-	required int32 nOfTasks = 3;
-	required double u = 4;
-	required bool feasible = 5;				//
-	repeated Consumption sfa = 6; 
-	repeated Consumption no_sfa = 7;
-	required string partitioningFile = 8;	//
+	required bool feasible = 3;				//
+	repeated Consumption sfa = 4;
+	required Consumption no_sfa = 5;
+	required string partitioningFile = 6;	//
+	required int32 n = 7;
+	required double u = 8;
 };
 
 

@@ -60,12 +60,12 @@ void protobuf_AssignDesc_results_2eproto() {
   static const int Execution_offsets_[8] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Execution, tsa_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Execution, csa_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Execution, noftasks_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Execution, u_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Execution, feasible_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Execution, sfa_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Execution, no_sfa_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Execution, partitioningfile_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Execution, n_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Execution, u_),
   };
   Execution_reflection_ =
     new ::google::protobuf::internal::GeneratedMessageReflection(
@@ -134,13 +134,13 @@ void protobuf_AddDesc_results_2eproto() {
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
     "\n\rresults.proto\022\007Results\"E\n\013Consumption\022"
     "\024\n\014nActiveCores\030\001 \002(\005\022\021\n\tmeanPower\030\002 \002(\001"
-    "\022\r\n\005alpha\030\003 \002(\001\"\267\001\n\tExecution\022\013\n\003TSA\030\001 \002"
-    "(\005\022\013\n\003CSA\030\002 \002(\005\022\020\n\010nOfTasks\030\003 \002(\005\022\t\n\001u\030\004"
-    " \002(\001\022\020\n\010feasible\030\005 \002(\010\022!\n\003sfa\030\006 \003(\0132\024.Re"
-    "sults.Consumption\022$\n\006no_sfa\030\007 \003(\0132\024.Resu"
-    "lts.Consumption\022\030\n\020partitioningFile\030\010 \002("
-    "\t\"@\n\006Result\022&\n\niterations\030\001 \003(\0132\022.Result"
-    "s.Execution\022\016\n\006hwFile\030\002 \002(\t", 347);
+    "\022\r\n\005alpha\030\003 \002(\001\"\260\001\n\tExecution\022\013\n\003TSA\030\001 \002"
+    "(\005\022\013\n\003CSA\030\002 \002(\005\022\020\n\010feasible\030\003 \002(\010\022!\n\003sfa"
+    "\030\004 \003(\0132\024.Results.Consumption\022$\n\006no_sfa\030\005"
+    " \002(\0132\024.Results.Consumption\022\030\n\020partitioni"
+    "ngFile\030\006 \002(\t\022\t\n\001n\030\007 \002(\005\022\t\n\001u\030\010 \002(\001\"@\n\006Re"
+    "sult\022&\n\niterations\030\001 \003(\0132\022.Results.Execu"
+    "tion\022\016\n\006hwFile\030\002 \002(\t", 340);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "results.proto", &protobuf_RegisterTypes);
   Consumption::default_instance_ = new Consumption();
@@ -449,12 +449,12 @@ void Consumption::Swap(Consumption* other) {
 #ifndef _MSC_VER
 const int Execution::kTSAFieldNumber;
 const int Execution::kCSAFieldNumber;
-const int Execution::kNOfTasksFieldNumber;
-const int Execution::kUFieldNumber;
 const int Execution::kFeasibleFieldNumber;
 const int Execution::kSfaFieldNumber;
 const int Execution::kNoSfaFieldNumber;
 const int Execution::kPartitioningFileFieldNumber;
+const int Execution::kNFieldNumber;
+const int Execution::kUFieldNumber;
 #endif  // !_MSC_VER
 
 Execution::Execution()
@@ -463,6 +463,7 @@ Execution::Execution()
 }
 
 void Execution::InitAsDefaultInstance() {
+  no_sfa_ = const_cast< ::Results::Consumption*>(&::Results::Consumption::default_instance());
 }
 
 Execution::Execution(const Execution& from)
@@ -475,10 +476,11 @@ void Execution::SharedCtor() {
   _cached_size_ = 0;
   tsa_ = 0;
   csa_ = 0;
-  noftasks_ = 0;
-  u_ = 0;
   feasible_ = false;
+  no_sfa_ = NULL;
   partitioningfile_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
+  n_ = 0;
+  u_ = 0;
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
 }
 
@@ -491,6 +493,7 @@ void Execution::SharedDtor() {
     delete partitioningfile_;
   }
   if (this != default_instance_) {
+    delete no_sfa_;
   }
 }
 
@@ -519,17 +522,19 @@ void Execution::Clear() {
   if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
     tsa_ = 0;
     csa_ = 0;
-    noftasks_ = 0;
-    u_ = 0;
     feasible_ = false;
+    if (has_no_sfa()) {
+      if (no_sfa_ != NULL) no_sfa_->::Results::Consumption::Clear();
+    }
     if (has_partitioningfile()) {
       if (partitioningfile_ != &::google::protobuf::internal::kEmptyString) {
         partitioningfile_->clear();
       }
     }
+    n_ = 0;
+    u_ = 0;
   }
   sfa_.Clear();
-  no_sfa_.Clear();
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
   mutable_unknown_fields()->Clear();
 }
@@ -567,44 +572,12 @@ bool Execution::MergePartialFromCodedStream(
         } else {
           goto handle_uninterpreted;
         }
-        if (input->ExpectTag(24)) goto parse_nOfTasks;
+        if (input->ExpectTag(24)) goto parse_feasible;
         break;
       }
 
-      // required int32 nOfTasks = 3;
+      // required bool feasible = 3;
       case 3: {
-        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
-         parse_nOfTasks:
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
-                 input, &noftasks_)));
-          set_has_noftasks();
-        } else {
-          goto handle_uninterpreted;
-        }
-        if (input->ExpectTag(33)) goto parse_u;
-        break;
-      }
-
-      // required double u = 4;
-      case 4: {
-        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_FIXED64) {
-         parse_u:
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   double, ::google::protobuf::internal::WireFormatLite::TYPE_DOUBLE>(
-                 input, &u_)));
-          set_has_u();
-        } else {
-          goto handle_uninterpreted;
-        }
-        if (input->ExpectTag(40)) goto parse_feasible;
-        break;
-      }
-
-      // required bool feasible = 5;
-      case 5: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
          parse_feasible:
@@ -615,12 +588,12 @@ bool Execution::MergePartialFromCodedStream(
         } else {
           goto handle_uninterpreted;
         }
-        if (input->ExpectTag(50)) goto parse_sfa;
+        if (input->ExpectTag(34)) goto parse_sfa;
         break;
       }
 
-      // repeated .Results.Consumption sfa = 6;
-      case 6: {
+      // repeated .Results.Consumption sfa = 4;
+      case 4: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
          parse_sfa:
@@ -629,28 +602,27 @@ bool Execution::MergePartialFromCodedStream(
         } else {
           goto handle_uninterpreted;
         }
-        if (input->ExpectTag(50)) goto parse_sfa;
-        if (input->ExpectTag(58)) goto parse_no_sfa;
+        if (input->ExpectTag(34)) goto parse_sfa;
+        if (input->ExpectTag(42)) goto parse_no_sfa;
         break;
       }
 
-      // repeated .Results.Consumption no_sfa = 7;
-      case 7: {
+      // required .Results.Consumption no_sfa = 5;
+      case 5: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
          parse_no_sfa:
           DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
-                input, add_no_sfa()));
+               input, mutable_no_sfa()));
         } else {
           goto handle_uninterpreted;
         }
-        if (input->ExpectTag(58)) goto parse_no_sfa;
-        if (input->ExpectTag(66)) goto parse_partitioningFile;
+        if (input->ExpectTag(50)) goto parse_partitioningFile;
         break;
       }
 
-      // required string partitioningFile = 8;
-      case 8: {
+      // required string partitioningFile = 6;
+      case 6: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
          parse_partitioningFile:
@@ -659,6 +631,38 @@ bool Execution::MergePartialFromCodedStream(
           ::google::protobuf::internal::WireFormat::VerifyUTF8String(
             this->partitioningfile().data(), this->partitioningfile().length(),
             ::google::protobuf::internal::WireFormat::PARSE);
+        } else {
+          goto handle_uninterpreted;
+        }
+        if (input->ExpectTag(56)) goto parse_n;
+        break;
+      }
+
+      // required int32 n = 7;
+      case 7: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
+         parse_n:
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
+                 input, &n_)));
+          set_has_n();
+        } else {
+          goto handle_uninterpreted;
+        }
+        if (input->ExpectTag(65)) goto parse_u;
+        break;
+      }
+
+      // required double u = 8;
+      case 8: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_FIXED64) {
+         parse_u:
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   double, ::google::protobuf::internal::WireFormatLite::TYPE_DOUBLE>(
+                 input, &u_)));
+          set_has_u();
         } else {
           goto handle_uninterpreted;
         }
@@ -694,40 +698,40 @@ void Execution::SerializeWithCachedSizes(
     ::google::protobuf::internal::WireFormatLite::WriteInt32(2, this->csa(), output);
   }
 
-  // required int32 nOfTasks = 3;
-  if (has_noftasks()) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt32(3, this->noftasks(), output);
-  }
-
-  // required double u = 4;
-  if (has_u()) {
-    ::google::protobuf::internal::WireFormatLite::WriteDouble(4, this->u(), output);
-  }
-
-  // required bool feasible = 5;
+  // required bool feasible = 3;
   if (has_feasible()) {
-    ::google::protobuf::internal::WireFormatLite::WriteBool(5, this->feasible(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteBool(3, this->feasible(), output);
   }
 
-  // repeated .Results.Consumption sfa = 6;
+  // repeated .Results.Consumption sfa = 4;
   for (int i = 0; i < this->sfa_size(); i++) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
-      6, this->sfa(i), output);
+      4, this->sfa(i), output);
   }
 
-  // repeated .Results.Consumption no_sfa = 7;
-  for (int i = 0; i < this->no_sfa_size(); i++) {
+  // required .Results.Consumption no_sfa = 5;
+  if (has_no_sfa()) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
-      7, this->no_sfa(i), output);
+      5, this->no_sfa(), output);
   }
 
-  // required string partitioningFile = 8;
+  // required string partitioningFile = 6;
   if (has_partitioningfile()) {
     ::google::protobuf::internal::WireFormat::VerifyUTF8String(
       this->partitioningfile().data(), this->partitioningfile().length(),
       ::google::protobuf::internal::WireFormat::SERIALIZE);
     ::google::protobuf::internal::WireFormatLite::WriteString(
-      8, this->partitioningfile(), output);
+      6, this->partitioningfile(), output);
+  }
+
+  // required int32 n = 7;
+  if (has_n()) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(7, this->n(), output);
+  }
+
+  // required double u = 8;
+  if (has_u()) {
+    ::google::protobuf::internal::WireFormatLite::WriteDouble(8, this->u(), output);
   }
 
   if (!unknown_fields().empty()) {
@@ -748,43 +752,43 @@ void Execution::SerializeWithCachedSizes(
     target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(2, this->csa(), target);
   }
 
-  // required int32 nOfTasks = 3;
-  if (has_noftasks()) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(3, this->noftasks(), target);
-  }
-
-  // required double u = 4;
-  if (has_u()) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteDoubleToArray(4, this->u(), target);
-  }
-
-  // required bool feasible = 5;
+  // required bool feasible = 3;
   if (has_feasible()) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteBoolToArray(5, this->feasible(), target);
+    target = ::google::protobuf::internal::WireFormatLite::WriteBoolToArray(3, this->feasible(), target);
   }
 
-  // repeated .Results.Consumption sfa = 6;
+  // repeated .Results.Consumption sfa = 4;
   for (int i = 0; i < this->sfa_size(); i++) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
-        6, this->sfa(i), target);
+        4, this->sfa(i), target);
   }
 
-  // repeated .Results.Consumption no_sfa = 7;
-  for (int i = 0; i < this->no_sfa_size(); i++) {
+  // required .Results.Consumption no_sfa = 5;
+  if (has_no_sfa()) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
-        7, this->no_sfa(i), target);
+        5, this->no_sfa(), target);
   }
 
-  // required string partitioningFile = 8;
+  // required string partitioningFile = 6;
   if (has_partitioningfile()) {
     ::google::protobuf::internal::WireFormat::VerifyUTF8String(
       this->partitioningfile().data(), this->partitioningfile().length(),
       ::google::protobuf::internal::WireFormat::SERIALIZE);
     target =
       ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
-        8, this->partitioningfile(), target);
+        6, this->partitioningfile(), target);
+  }
+
+  // required int32 n = 7;
+  if (has_n()) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(7, this->n(), target);
+  }
+
+  // required double u = 8;
+  if (has_u()) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteDoubleToArray(8, this->u(), target);
   }
 
   if (!unknown_fields().empty()) {
@@ -812,45 +816,44 @@ int Execution::ByteSize() const {
           this->csa());
     }
 
-    // required int32 nOfTasks = 3;
-    if (has_noftasks()) {
-      total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::Int32Size(
-          this->noftasks());
-    }
-
-    // required double u = 4;
-    if (has_u()) {
-      total_size += 1 + 8;
-    }
-
-    // required bool feasible = 5;
+    // required bool feasible = 3;
     if (has_feasible()) {
       total_size += 1 + 1;
     }
 
-    // required string partitioningFile = 8;
+    // required .Results.Consumption no_sfa = 5;
+    if (has_no_sfa()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          this->no_sfa());
+    }
+
+    // required string partitioningFile = 6;
     if (has_partitioningfile()) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::StringSize(
           this->partitioningfile());
     }
 
+    // required int32 n = 7;
+    if (has_n()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::Int32Size(
+          this->n());
+    }
+
+    // required double u = 8;
+    if (has_u()) {
+      total_size += 1 + 8;
+    }
+
   }
-  // repeated .Results.Consumption sfa = 6;
+  // repeated .Results.Consumption sfa = 4;
   total_size += 1 * this->sfa_size();
   for (int i = 0; i < this->sfa_size(); i++) {
     total_size +=
       ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
         this->sfa(i));
-  }
-
-  // repeated .Results.Consumption no_sfa = 7;
-  total_size += 1 * this->no_sfa_size();
-  for (int i = 0; i < this->no_sfa_size(); i++) {
-    total_size +=
-      ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
-        this->no_sfa(i));
   }
 
   if (!unknown_fields().empty()) {
@@ -879,7 +882,6 @@ void Execution::MergeFrom(const ::google::protobuf::Message& from) {
 void Execution::MergeFrom(const Execution& from) {
   GOOGLE_CHECK_NE(&from, this);
   sfa_.MergeFrom(from.sfa_);
-  no_sfa_.MergeFrom(from.no_sfa_);
   if (from._has_bits_[0 / 32] & (0xffu << (0 % 32))) {
     if (from.has_tsa()) {
       set_tsa(from.tsa());
@@ -887,17 +889,20 @@ void Execution::MergeFrom(const Execution& from) {
     if (from.has_csa()) {
       set_csa(from.csa());
     }
-    if (from.has_noftasks()) {
-      set_noftasks(from.noftasks());
-    }
-    if (from.has_u()) {
-      set_u(from.u());
-    }
     if (from.has_feasible()) {
       set_feasible(from.feasible());
     }
+    if (from.has_no_sfa()) {
+      mutable_no_sfa()->::Results::Consumption::MergeFrom(from.no_sfa());
+    }
     if (from.has_partitioningfile()) {
       set_partitioningfile(from.partitioningfile());
+    }
+    if (from.has_n()) {
+      set_n(from.n());
+    }
+    if (from.has_u()) {
+      set_u(from.u());
     }
   }
   mutable_unknown_fields()->MergeFrom(from.unknown_fields());
@@ -916,13 +921,13 @@ void Execution::CopyFrom(const Execution& from) {
 }
 
 bool Execution::IsInitialized() const {
-  if ((_has_bits_[0] & 0x0000009f) != 0x0000009f) return false;
+  if ((_has_bits_[0] & 0x000000f7) != 0x000000f7) return false;
 
   for (int i = 0; i < sfa_size(); i++) {
     if (!this->sfa(i).IsInitialized()) return false;
   }
-  for (int i = 0; i < no_sfa_size(); i++) {
-    if (!this->no_sfa(i).IsInitialized()) return false;
+  if (has_no_sfa()) {
+    if (!this->no_sfa().IsInitialized()) return false;
   }
   return true;
 }
@@ -931,12 +936,12 @@ void Execution::Swap(Execution* other) {
   if (other != this) {
     std::swap(tsa_, other->tsa_);
     std::swap(csa_, other->csa_);
-    std::swap(noftasks_, other->noftasks_);
-    std::swap(u_, other->u_);
     std::swap(feasible_, other->feasible_);
     sfa_.Swap(&other->sfa_);
-    no_sfa_.Swap(&other->no_sfa_);
+    std::swap(no_sfa_, other->no_sfa_);
     std::swap(partitioningfile_, other->partitioningfile_);
+    std::swap(n_, other->n_);
+    std::swap(u_, other->u_);
     std::swap(_has_bits_[0], other->_has_bits_[0]);
     _unknown_fields_.Swap(&other->_unknown_fields_);
     std::swap(_cached_size_, other->_cached_size_);

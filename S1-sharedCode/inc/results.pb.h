@@ -209,31 +209,17 @@ class Execution : public ::google::protobuf::Message {
   inline ::google::protobuf::int32 csa() const;
   inline void set_csa(::google::protobuf::int32 value);
 
-  // required int32 nOfTasks = 3;
-  inline bool has_noftasks() const;
-  inline void clear_noftasks();
-  static const int kNOfTasksFieldNumber = 3;
-  inline ::google::protobuf::int32 noftasks() const;
-  inline void set_noftasks(::google::protobuf::int32 value);
-
-  // required double u = 4;
-  inline bool has_u() const;
-  inline void clear_u();
-  static const int kUFieldNumber = 4;
-  inline double u() const;
-  inline void set_u(double value);
-
-  // required bool feasible = 5;
+  // required bool feasible = 3;
   inline bool has_feasible() const;
   inline void clear_feasible();
-  static const int kFeasibleFieldNumber = 5;
+  static const int kFeasibleFieldNumber = 3;
   inline bool feasible() const;
   inline void set_feasible(bool value);
 
-  // repeated .Results.Consumption sfa = 6;
+  // repeated .Results.Consumption sfa = 4;
   inline int sfa_size() const;
   inline void clear_sfa();
-  static const int kSfaFieldNumber = 6;
+  static const int kSfaFieldNumber = 4;
   inline const ::Results::Consumption& sfa(int index) const;
   inline ::Results::Consumption* mutable_sfa(int index);
   inline ::Results::Consumption* add_sfa();
@@ -242,22 +228,19 @@ class Execution : public ::google::protobuf::Message {
   inline ::google::protobuf::RepeatedPtrField< ::Results::Consumption >*
       mutable_sfa();
 
-  // repeated .Results.Consumption no_sfa = 7;
-  inline int no_sfa_size() const;
+  // required .Results.Consumption no_sfa = 5;
+  inline bool has_no_sfa() const;
   inline void clear_no_sfa();
-  static const int kNoSfaFieldNumber = 7;
-  inline const ::Results::Consumption& no_sfa(int index) const;
-  inline ::Results::Consumption* mutable_no_sfa(int index);
-  inline ::Results::Consumption* add_no_sfa();
-  inline const ::google::protobuf::RepeatedPtrField< ::Results::Consumption >&
-      no_sfa() const;
-  inline ::google::protobuf::RepeatedPtrField< ::Results::Consumption >*
-      mutable_no_sfa();
+  static const int kNoSfaFieldNumber = 5;
+  inline const ::Results::Consumption& no_sfa() const;
+  inline ::Results::Consumption* mutable_no_sfa();
+  inline ::Results::Consumption* release_no_sfa();
+  inline void set_allocated_no_sfa(::Results::Consumption* no_sfa);
 
-  // required string partitioningFile = 8;
+  // required string partitioningFile = 6;
   inline bool has_partitioningfile() const;
   inline void clear_partitioningfile();
-  static const int kPartitioningFileFieldNumber = 8;
+  static const int kPartitioningFileFieldNumber = 6;
   inline const ::std::string& partitioningfile() const;
   inline void set_partitioningfile(const ::std::string& value);
   inline void set_partitioningfile(const char* value);
@@ -266,31 +249,47 @@ class Execution : public ::google::protobuf::Message {
   inline ::std::string* release_partitioningfile();
   inline void set_allocated_partitioningfile(::std::string* partitioningfile);
 
+  // required int32 n = 7;
+  inline bool has_n() const;
+  inline void clear_n();
+  static const int kNFieldNumber = 7;
+  inline ::google::protobuf::int32 n() const;
+  inline void set_n(::google::protobuf::int32 value);
+
+  // required double u = 8;
+  inline bool has_u() const;
+  inline void clear_u();
+  static const int kUFieldNumber = 8;
+  inline double u() const;
+  inline void set_u(double value);
+
   // @@protoc_insertion_point(class_scope:Results.Execution)
  private:
   inline void set_has_tsa();
   inline void clear_has_tsa();
   inline void set_has_csa();
   inline void clear_has_csa();
-  inline void set_has_noftasks();
-  inline void clear_has_noftasks();
-  inline void set_has_u();
-  inline void clear_has_u();
   inline void set_has_feasible();
   inline void clear_has_feasible();
+  inline void set_has_no_sfa();
+  inline void clear_has_no_sfa();
   inline void set_has_partitioningfile();
   inline void clear_has_partitioningfile();
+  inline void set_has_n();
+  inline void clear_has_n();
+  inline void set_has_u();
+  inline void clear_has_u();
 
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
 
   ::google::protobuf::int32 tsa_;
   ::google::protobuf::int32 csa_;
-  double u_;
-  ::google::protobuf::int32 noftasks_;
-  bool feasible_;
   ::google::protobuf::RepeatedPtrField< ::Results::Consumption > sfa_;
-  ::google::protobuf::RepeatedPtrField< ::Results::Consumption > no_sfa_;
+  ::Results::Consumption* no_sfa_;
+  bool feasible_;
+  ::google::protobuf::int32 n_;
   ::std::string* partitioningfile_;
+  double u_;
 
   mutable int _cached_size_;
   ::google::protobuf::uint32 _has_bits_[(8 + 31) / 32];
@@ -523,59 +522,15 @@ inline void Execution::set_csa(::google::protobuf::int32 value) {
   csa_ = value;
 }
 
-// required int32 nOfTasks = 3;
-inline bool Execution::has_noftasks() const {
+// required bool feasible = 3;
+inline bool Execution::has_feasible() const {
   return (_has_bits_[0] & 0x00000004u) != 0;
 }
-inline void Execution::set_has_noftasks() {
+inline void Execution::set_has_feasible() {
   _has_bits_[0] |= 0x00000004u;
 }
-inline void Execution::clear_has_noftasks() {
-  _has_bits_[0] &= ~0x00000004u;
-}
-inline void Execution::clear_noftasks() {
-  noftasks_ = 0;
-  clear_has_noftasks();
-}
-inline ::google::protobuf::int32 Execution::noftasks() const {
-  return noftasks_;
-}
-inline void Execution::set_noftasks(::google::protobuf::int32 value) {
-  set_has_noftasks();
-  noftasks_ = value;
-}
-
-// required double u = 4;
-inline bool Execution::has_u() const {
-  return (_has_bits_[0] & 0x00000008u) != 0;
-}
-inline void Execution::set_has_u() {
-  _has_bits_[0] |= 0x00000008u;
-}
-inline void Execution::clear_has_u() {
-  _has_bits_[0] &= ~0x00000008u;
-}
-inline void Execution::clear_u() {
-  u_ = 0;
-  clear_has_u();
-}
-inline double Execution::u() const {
-  return u_;
-}
-inline void Execution::set_u(double value) {
-  set_has_u();
-  u_ = value;
-}
-
-// required bool feasible = 5;
-inline bool Execution::has_feasible() const {
-  return (_has_bits_[0] & 0x00000010u) != 0;
-}
-inline void Execution::set_has_feasible() {
-  _has_bits_[0] |= 0x00000010u;
-}
 inline void Execution::clear_has_feasible() {
-  _has_bits_[0] &= ~0x00000010u;
+  _has_bits_[0] &= ~0x00000004u;
 }
 inline void Execution::clear_feasible() {
   feasible_ = false;
@@ -589,7 +544,7 @@ inline void Execution::set_feasible(bool value) {
   feasible_ = value;
 }
 
-// repeated .Results.Consumption sfa = 6;
+// repeated .Results.Consumption sfa = 4;
 inline int Execution::sfa_size() const {
   return sfa_.size();
 }
@@ -614,40 +569,53 @@ Execution::mutable_sfa() {
   return &sfa_;
 }
 
-// repeated .Results.Consumption no_sfa = 7;
-inline int Execution::no_sfa_size() const {
-  return no_sfa_.size();
+// required .Results.Consumption no_sfa = 5;
+inline bool Execution::has_no_sfa() const {
+  return (_has_bits_[0] & 0x00000010u) != 0;
+}
+inline void Execution::set_has_no_sfa() {
+  _has_bits_[0] |= 0x00000010u;
+}
+inline void Execution::clear_has_no_sfa() {
+  _has_bits_[0] &= ~0x00000010u;
 }
 inline void Execution::clear_no_sfa() {
-  no_sfa_.Clear();
+  if (no_sfa_ != NULL) no_sfa_->::Results::Consumption::Clear();
+  clear_has_no_sfa();
 }
-inline const ::Results::Consumption& Execution::no_sfa(int index) const {
-  return no_sfa_.Get(index);
+inline const ::Results::Consumption& Execution::no_sfa() const {
+  return no_sfa_ != NULL ? *no_sfa_ : *default_instance_->no_sfa_;
 }
-inline ::Results::Consumption* Execution::mutable_no_sfa(int index) {
-  return no_sfa_.Mutable(index);
-}
-inline ::Results::Consumption* Execution::add_no_sfa() {
-  return no_sfa_.Add();
-}
-inline const ::google::protobuf::RepeatedPtrField< ::Results::Consumption >&
-Execution::no_sfa() const {
+inline ::Results::Consumption* Execution::mutable_no_sfa() {
+  set_has_no_sfa();
+  if (no_sfa_ == NULL) no_sfa_ = new ::Results::Consumption;
   return no_sfa_;
 }
-inline ::google::protobuf::RepeatedPtrField< ::Results::Consumption >*
-Execution::mutable_no_sfa() {
-  return &no_sfa_;
+inline ::Results::Consumption* Execution::release_no_sfa() {
+  clear_has_no_sfa();
+  ::Results::Consumption* temp = no_sfa_;
+  no_sfa_ = NULL;
+  return temp;
+}
+inline void Execution::set_allocated_no_sfa(::Results::Consumption* no_sfa) {
+  delete no_sfa_;
+  no_sfa_ = no_sfa;
+  if (no_sfa) {
+    set_has_no_sfa();
+  } else {
+    clear_has_no_sfa();
+  }
 }
 
-// required string partitioningFile = 8;
+// required string partitioningFile = 6;
 inline bool Execution::has_partitioningfile() const {
-  return (_has_bits_[0] & 0x00000080u) != 0;
+  return (_has_bits_[0] & 0x00000020u) != 0;
 }
 inline void Execution::set_has_partitioningfile() {
-  _has_bits_[0] |= 0x00000080u;
+  _has_bits_[0] |= 0x00000020u;
 }
 inline void Execution::clear_has_partitioningfile() {
-  _has_bits_[0] &= ~0x00000080u;
+  _has_bits_[0] &= ~0x00000020u;
 }
 inline void Execution::clear_partitioningfile() {
   if (partitioningfile_ != &::google::protobuf::internal::kEmptyString) {
@@ -707,6 +675,50 @@ inline void Execution::set_allocated_partitioningfile(::std::string* partitionin
     clear_has_partitioningfile();
     partitioningfile_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
   }
+}
+
+// required int32 n = 7;
+inline bool Execution::has_n() const {
+  return (_has_bits_[0] & 0x00000040u) != 0;
+}
+inline void Execution::set_has_n() {
+  _has_bits_[0] |= 0x00000040u;
+}
+inline void Execution::clear_has_n() {
+  _has_bits_[0] &= ~0x00000040u;
+}
+inline void Execution::clear_n() {
+  n_ = 0;
+  clear_has_n();
+}
+inline ::google::protobuf::int32 Execution::n() const {
+  return n_;
+}
+inline void Execution::set_n(::google::protobuf::int32 value) {
+  set_has_n();
+  n_ = value;
+}
+
+// required double u = 8;
+inline bool Execution::has_u() const {
+  return (_has_bits_[0] & 0x00000080u) != 0;
+}
+inline void Execution::set_has_u() {
+  _has_bits_[0] |= 0x00000080u;
+}
+inline void Execution::clear_has_u() {
+  _has_bits_[0] &= ~0x00000080u;
+}
+inline void Execution::clear_u() {
+  u_ = 0;
+  clear_has_u();
+}
+inline double Execution::u() const {
+  return u_;
+}
+inline void Execution::set_u(double value) {
+  set_has_u();
+  u_ = value;
 }
 
 // -------------------------------------------------------------------
