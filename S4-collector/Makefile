@@ -7,7 +7,7 @@ SHARED_OBJ_DIR = ../S1-sharedCode/obj
 
 SHARED_OBJ_FILES := $(shell ls $(SHARED_OBJ_DIR)/*.o 2> /dev/null;)
 
-all: collector
+all: collector viewer
 
 collector:
 	@$(CC) -I$(SHARED_INC_DIR) $(CFLAGS) $(LDFLAGS) collector.cpp  -o collector $(SHARED_OBJ_FILES)

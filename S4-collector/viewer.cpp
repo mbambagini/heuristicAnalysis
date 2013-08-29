@@ -21,11 +21,11 @@
 #include <gflags/gflags.h>
 
 
-DEFINE_string(resultsFile, "", "File containing all the results");
+DEFINE_string(srcFile, "", "File containing all the results");
 
 
 using namespace std;
-using namespace GlobalResults;
+using namespace Results;
 
 
 void fatal_error (string msg);
@@ -35,30 +35,24 @@ int main (int argc, char* argv[])
 {
 	google::ParseCommandLineFlags(&argc, &argv, false);
 
-	GlobalResult res;
-	ifstream input(FLAGS_resultsFile.c_str(), ios::in | ios::binary);
+	Result res;
+	ifstream input(FLAGS_srcFile.c_str(), ios::in | ios::binary);
 	if ((bool)input) {
 		if (!res.ParseFromIstream(&input))
-			fatal_error ("Failed to parse "+FLAGS_resultsFile);
+			fatal_error ("Failed to parse "+FLAGS_srcFile);
 	}
 	input.close();
 
-	for (int i=0; i<res.results_size(); i++) {
-		const GlobalResults::AlgorithmInvocation& inv = res.results(i);
+	cout<<"hardware file: "<<res.hwfile()<<endl<<endl;
+	for (int i=0; i<res.iterations_size(); i++) {
+		const Execution& iter = res.iterations(i);
 		cout<<"---------------------------------------------------------"<<endl;
-		cout<<"TSA ("<<inv.tsa()<<"), CSA ("<<inv.csa()<<")"<<endl;
-		cout<<"#cores ("<<inv.nofcores()<<")"<<endl;
-		cout<<"nominal utilization ("<<inv.u()<<")"<<endl;
-		cout<<setw(10)<<"CORE"<<setw(15)<<"U"<<setw(10)<<"#TASKS"<<setw(20);
-		if (!inv.feasible())
-			continue;
-		cout<<"MEAN POWER"<<endl;
-		for (int j=0; j<inv.cons_size(); j++) {
-			const GlobalResults::Consumption& c = inv.cons(j);
-			cout<<setw(10)<<c.core()<<setw(15)<<c.u();
-			cout<<setw(10)<<c.noftasks()<<setw(20)<<c.meanp()<<endl;
-		}
-		cout<<endl;
+		cout<<"Problem "<<i<<" (n: "<<iter.n()<<", u: "<<iter.u()<<")"<<endl;
+		cout<<"TSA: "<<iter.tsa()<<", CSA: "<<iter.csa()<<endl;
+		cout<<"no sfa: "<<iter.no_sfa().meanpower()<<endl;
+		for (int j=0; j<iter.sfa_size(); j++)
+			cout<<"alpha: "<<iter.sfa(j).alpha()<<", power: "<<
+												  iter.sfa(j).meanpower()<<endl;
 	}
 	return 0;
 }

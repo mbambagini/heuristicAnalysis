@@ -5,10 +5,8 @@
 #Period
 maxBound=500
 minBound=100
-#Alpha
-alpha=0.0
 #Number of resources
-numRes=2
+numRes=1
 #Number of tasks
 minN=10
 stepN=10
